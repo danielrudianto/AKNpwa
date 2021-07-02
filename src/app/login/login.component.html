@@ -1,0 +1,24 @@
+<div class="jumbotron vertical-center">
+  <div class="container p-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-6 col-sm-10 col-8">
+        <img src="assets/images/login.svg" class="w-100" />
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-10 col-10">
+        <h1 class="login_title">AKN Smart Report</h1>
+        <h2 class="login_header">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="w-100">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput placeholder="Email" type="email">
+          </mat-form-field>
+          <mat-form-field class="w-100 mb-3">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" matInput placeholder="Password" type="password">
+          </mat-form-field>
+          <button type="submit" mat-raised-button color="primary" class="w-100" [disabled]="!loginForm.valid || isSubmitting">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

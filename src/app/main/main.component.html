@@ -1,0 +1,55 @@
+<div class="jumbotron h-100">
+  <div class="headerBackground">
+    <div class="navigation">
+      <img src="assets/images/logoAlpha.png" />
+    </div>
+  </div>
+  <div class="container app_container">
+    <div class="row justify-content-center">
+      <div class="col-12 p-0">
+        <div class="container">
+          <div class="row p-5 pb-2">
+            <h3>Hello, {{ name }}</h3>
+          </div>
+          <div class="row mb-5 p-3">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
+              <button mat-raised-button class="w-100">
+                <mat-icon [ngStyle]="{'color':'#261e15'}">account_circle</mat-icon> Profile
+              </button>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
+              <button mat-raised-button class="w-100">
+                <mat-icon [ngStyle]="{'color':'#261e15'}">settings</mat-icon> Settings
+              </button>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+              <button mat-raised-button class="w-100">
+                <mat-icon [ngStyle]="{'color':'#261e15'}">notification_important</mat-icon> Notification
+              </button>
+            </div>
+          </div>
+          <div class="projectPickerWrapper">
+            <swiper [breakpoints]="breakpoints">
+              <ng-template swiperSlide *ngFor="let project of projects">
+                <div class="projectPicker w-100" (click)="goToProject(project)">
+                  <h4>{{ project.Name }}</h4>
+                  <p class="mb-0">{{ project.Client.Name }}</p>
+                  <p>{{ project.Address }}</p>
+                  <mat-divider></mat-divider>
+                  <button
+                          mat-raised-button
+                          class="mt-3"
+                          color="accent"
+                          (click)="goToProjectDetail(project)">
+                    <mat-icon>view_comfy</mat-icon>
+                    Details
+                  </button>
+                </div>
+              </ng-template>
+            </swiper>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row justify-content-center mb-3">
+    <div class="col-lg-6 col-md-8 col-sm-10 col-10">
+      <mat-accordion>
+        <mat-expansion-panel expanded="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Tools Report
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-list role="list" *ngIf="tools.length > 0">
+            <mat-list-item role="listitem" *ngFor="let tool of tools">
+              <span mat-line>
+                {{ tool.Name }} ( {{ tool.Quantity | number:'1.0-0' }} )
+              </span>
+              <span mat-line>
+                {{ tool.Description }}
+              </span>
+            </mat-list-item>
+          </mat-list>
+          <p *ngIf="tools.length == 0">Tools has not been added.</p>
+          <button mat-raised-button
+                  color="primary"
+                  (click)="openAddToolForm()"
+                  [disabled]="isSubmitting">
+            Add tool
+          </button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10 col-10">
+      <button mat-raised-button
+              color="primary"
+              class="w-100"
+              [disabled]="tools.length == 0 || isSubmitting"
+              (click)="addTools()">
+        Submit tool report
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row justify-content-center mb-3">
+    <div class="col-lg-6 col-md-8 col-sm-10 col-10">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Attending Workers
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let worker of attendingWorkers">
+              <div class="row w-100">
+                <div class="col-lg-6 text-start">
+                  {{ worker.Name }}
+                </div>
+                <div class="col-lg-6 text-end">
+                  {{ worker.Quantity | number:'1.0-0' }}
+                </div>
+              </div>
+            </mat-list-item>
+          </mat-list>
+
+        </mat-expansion-panel>
+        <mat-expansion-panel expanded="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Attendance Report
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-list role="list" *ngIf="workers.length > 0">
+            <mat-list-item role="listitem" *ngFor="let worker of workers">
+              <div class="row w-100">
+                <div class="col-lg-6 text-start">
+                  {{ worker.Name }}
+                </div>
+                <div class="col-lg-6 text-end">
+                  {{ worker.Quantity | number:'1.0-0' }}
+                </div>
+              </div>
+            </mat-list-item>
+          </mat-list>
+          <p *ngIf="workers.length == 0">Worker has not been added.</p>
+          <button mat-raised-button
+                  color="primary"
+                  (click)="openAddAttendanceForm()"
+                  [disabled]="isSubmitting">
+            Add attendance
+          </button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10 col-10">
+      <button mat-raised-button
+              color="primary"
+              class="w-100"
+              [disabled]="workers.length == 0 || isSubmitting"
+              (click)="addAttendance()">
+        Add attendance
+      </button>
+    </div>
+  </div>
+</div>

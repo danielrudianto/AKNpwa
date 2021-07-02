@@ -1,0 +1,30 @@
+<mat-nav-list>
+  <a [routerLink]="'Report/Attendance/' + this.data" mat-list-item (click)="closeBottomSheet()">
+    <span mat-line>Attendance Report</span>
+    <span mat-line>Add Worker Attendance</span>
+  </a>
+  <a [routerLink]="'Report/Tool/' + this.data" mat-list-item (click)="closeBottomSheet()">
+    <span mat-line>Tool Report</span>
+    <span mat-line>Add Tool Attendance</span>
+  </a>
+  <a [routerLink]="'Report/Material/' + this.data" mat-list-item (click)="closeBottomSheet()">
+    <span mat-line>Material Report</span>
+    <span mat-line>Add Material Attendance</span>
+  </a>
+  <a [routerLink]="'Report/Weather/' + this.data" mat-list-item (click)="closeBottomSheet()">
+    <span mat-line>Weather Report</span>
+    <span mat-line>Add Weather Attendance</span>
+  </a>
+  <a [routerLink]="'Report/Rfi/' + this.data" mat-list-item (click)="closeBottomSheet()">
+    <span mat-line>Request For Information</span>
+    <span mat-line>Submit request for information</span>
+  </a>
+  <a [routerLink]="'Report/Progress/' + this.data" mat-list-item (click)="closeBottomSheet()">
+    <span mat-line>Progress Report</span>
+    <span mat-line>Add Progress Attendance</span>
+  </a>
+  <a [routerLink]="'Report/Daily/' + this.data" mat-list-item (click)="closeBottomSheet()">
+    <span mat-line>Daily Report</span>
+    <span mat-line>Add Daily Attendance</span>
+  </a>
+</mat-nav-list>
