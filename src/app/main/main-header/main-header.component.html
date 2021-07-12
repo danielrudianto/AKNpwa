@@ -1,0 +1,14 @@
+<div class="row py-3">
+  <div class="col-3">
+    <img src="assets/images/Profile.png" class="w-100 rounded-circle" *ngIf="imageUrl == null" />
+  </div>
+  <div class="col-9">
+    <h4 class="text-white fr-text mb-0">{{ name }}</h4>
+    <div class="text-alpha fr-text position-text" [ngSwitch]="position">
+      <p *ngSwitchCase="1">Site Engineer</p>
+      <p *ngSwitchCase="2">Site Manager</p>
+      <p *ngSwitchCase="3">Project Manager</p>
+      <p *ngSwitchCase="4">Director</p>
+    </div>
+  </div>
+</div>

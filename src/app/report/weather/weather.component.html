@@ -1,31 +1,41 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-4 col-md-6 col-sm-8 col-10 mb-3">
-      <swiper
-              [(index)]="selectedWeather"
-              [breakpoints]="breakpoints">
-        <ng-template swiperSlide>
-          <div class="weather-card" (click)="selectedWeather = 0">
-            <img src="assets/images/Sunny.png" class="w-100" alt="Sunny icon" />
-            <p class="text-center h5">Sunny</p>
-          </div>
-        </ng-template>
-        <ng-template swiperSlide>
-          <div class="weather-card" (click)="selectedWeather = 1">
-            <img src="assets/images/Raining.png" class="w-100" alt="Raining icon" />
-            <p class="text-center h5">Raining</p>
-          </div>
-        </ng-template>
-      </swiper>
+<div class="jumbotron h-100">
+  <div class="headerBackground">
+    <div class="navigation">
+      <button mat-button
+              style="float:left"
+              (click)="backToProject()"
+              [disabled]="isSubmitting">
+        <mat-icon style="color:white">keyboard_arrow_left</mat-icon>
+        <h4 class="text-white d-inline-block mb-0 ms-2">Weather Report</h4>
+      </button>
     </div>
   </div>
-  <div class="col-12 text-center">
-    <button
-            mat-raised-button
-            color="primary"
-            (click)="submitForm()"
-            [disabled]="isSubmitting">
-      Submit
-    </button>
+  <div class="container app_container">
+    <div class="row justify-content-center mb-3 h-100 d-flex material_row">
+      <div class="col-lg-4 col-md-6 col-sm-8 col-12 p-3 h-100">
+        <swiper [(index)]="selectedWeather"
+                [breakpoints]="breakpoints">
+          <ng-template swiperSlide>
+            <div class="weather-card" (click)="selectedWeather = 0">
+              <img src="assets/images/Sunny.png" class="w-100" alt="Sunny icon" />
+              <p class="text-center h5">Sunny</p>
+            </div>
+          </ng-template>
+          <ng-template swiperSlide>
+            <div class="weather-card" (click)="selectedWeather = 1">
+              <img src="assets/images/Raining.png" class="w-100" alt="Raining icon" />
+              <p class="text-center h5">Raining</p>
+            </div>
+          </ng-template>
+        </swiper>
+        <button mat-raised-button
+                class="w-100 mt-3"
+                color="primary"
+                (click)="submitForm()"
+                [disabled]="isSubmitting">
+          Submit
+        </button>
+      </div>
+    </div>
   </div>
 </div>

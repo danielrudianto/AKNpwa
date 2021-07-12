@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import SwiperCore, {
   Navigation,
   Pagination,
@@ -25,10 +26,15 @@ export class WeatherComponent implements OnInit {
     private router: ActivatedRoute,
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    private route: Router
+    private route: Router,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {
+  }
+
+  backToProject() {
+    this.route.navigate(["/Project/Feed/" + this.router.snapshot.params.projectId])
   }
 
   selectedWeather: number = 0;
@@ -42,11 +48,11 @@ export class WeatherComponent implements OnInit {
     this.isSubmitting = true;
     this.reportService.submitWeatherReport({
       WeatherId: this.selectedWeather,
-      CodeProjectId: parseInt(this.router.snapshot.params.projectId),
+      CodeProjectId: parseInt(this.cookieService.get("projectId")),
       CreatedBy: this.authService.getEmail()
     }).subscribe(responseData => {
       this.isSubmitting = false;
-      this.route.navigate(["/Project/Feed/" + this.router.snapshot.params.projectId.toString()]);
+      this.route.navigate(["/Project/Feed"]);
     }, error => {
       this.isSubmitting = false;
       this.snackBar.open("Close", error.message, {

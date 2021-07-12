@@ -16,42 +16,45 @@ import { MaterialComponent } from './report/material/material.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { RfiComponent } from './report/rfi/rfi.component';
 import { ToolsComponent } from './report/tools/tools.component';
+import { SuccessComponent } from './success/success.component';
 
 const routes: Routes = [
-  {
-    path: "login",
-    component: LoginComponent
-  },
   {
     path: "",
     component: MainComponent,
     pathMatch: "full",
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    data: { state: 'Main' },
   },
   {
-    path: "profile",
+    path: "Login",
+    component: LoginComponent,
+    data: { state: 'Login' }
+  },
+  {
+    path: "Profile",
     component: ProfileComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    data: { state: 'Profile' }
   },
   {
     path: "Project",
     component: ProjectComponent,
     canActivate: [AuthGuardService],
+    data: { state: 'Project' },
     children: [
       {
-        path: ":projectId",
-        component: ProjectDetailComponent,
-        canActivate: [AuthGuardService]
+        path: "Detail",
+        component: ProjectDetailComponent
       },
       {
-        path: "Detail/:projectId",
-        component: ProjectDetailComponent,
-        canActivate: [AuthGuardService]
-      },
-      {
-        path: "Feed/:projectId",
+        path: "Feed",
         component: FeedComponent,
         canActivate: [AuthGuardService]
+      },
+      {
+        path: "**",
+        redirectTo:"/"
       }
     ]
   },
@@ -61,45 +64,48 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: "",
-        pathMatch: "full",
-        redirectTo: "Attendance"
-      },
-      {
-        path: "Attendance/:projectId",
+        path: "Attendance",
         component: AttendanceComponent,
         canActivate: [AuthGuardService]
       },
       {
-        path: "Tool/:projectId",
+        path: "Tool",
         component: ToolsComponent,
         canActivate: [AuthGuardService]
       },
       {
-        path: "Material/:projectId",
+        path: "Material",
         component: MaterialComponent,
         canActivate: [AuthGuardService]
       },
       {
-        path: "Weather/:projectId",
+        path: "Weather",
         component: WeatherComponent,
         canActivate: [AuthGuardService]
       },
       {
-        path: "Rfi/:projectId",
+        path: "Rfi",
         component: RfiComponent,
         canActivate: [AuthGuardService]
       },
       {
-        path: "Progress/:projectId",
+        path: "Progress",
         component: ProgressComponent,
         canActivate: [AuthGuardService]
       },
       {
-        path: "Daily/:projectId",
+        path: "Daily",
         component: DailyComponent,
         canActivate: [AuthGuardService]
       },
+      {
+        path: "Success",
+        component: SuccessComponent
+      },
+      {
+        path: "**",
+        redirectTo:"/"
+      }
     ]
   }
 ];

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-feed',
@@ -12,11 +13,12 @@ export class FeedComponent implements OnInit {
   constructor(
     private bottomSheet: MatBottomSheet,
     private router: ActivatedRoute,
-    private route: Router
+    private route: Router,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {
-    if (this.router.snapshot.params.projectId == undefined) {
+    if (!this.cookieService.get("projectId")) {
       this.route.navigate(["/"]);
     }
   }
@@ -27,9 +29,11 @@ export class FeedComponent implements OnInit {
     });
   }
 
-  backToMain() {
-    this.route.navigate(["/"]);
-  }
+  breakpoints = {
+    640: { slidesPerView: 1, spaceBetween: 20 },
+    768: { slidesPerView: 2, spaceBetween: 40 },
+    1024: { slidesPerView: 3, spaceBetween: 50 }
+  };
 
 }
 

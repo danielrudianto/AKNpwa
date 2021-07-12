@@ -1,51 +1,93 @@
-<div class="jumbotron h-100">
-  <div class="headerBackground">
-    <div class="navigation">
-      <button mat-button
-              style="float:left"
-              (click)="backToProject()"
-              [disabled]="isSubmitting">
-        <mat-icon style="color:white">keyboard_arrow_left</mat-icon>
-      </button>
-      <button mat-button
-              style="float:right"
-              (click)="openAddMaterialForm()"
-              [disabled]="isSubmitting">
-        <mat-icon style="color:white">add</mat-icon>
-      </button>
-      <h2 class="text-white">Material Report</h2>
-    </div>
+<div class="step-indicator mb-4">
+  <div class="step-1" [class.active]="step == 1"></div>
+  <div class="bridge-1"></div>
+  <div class="step-2" [class.active]="step == 2"></div>
+  <div class="bridge-2"></div>
+  <div class="step-3" [class.active]="step == 3"></div>
+</div>
+<div class="attendance_container" *ngIf="step == 1">
+  <div *ngIf="materials.length == 0">
+    <img src="assets/images/Empty.png" class="w-100" />
+    <h3 class="text-center text-white">No materials has been added</h3>
   </div>
-  <div class="container app_container">
-    <div class="row justify-content-center mb-3 h-100 d-flex material_row">
-      <div class="col-23 p-3 h-100">
-        <div class="wrapper">
-          <div class="box content">
-            <div
-                 class="row material_container"
-                 *ngFor="let material of materials">
-              <div class="col-8">
-
-              </div>
-              <div class="col-4">
-                <mat-slide-toggle>
-                  Slide me!
-                </mat-slide-toggle>
-              </div>
-            </div>
-          </div>
-          <div class="box footer">
-            <button mat-raised-button
-                    color="primary"
-                    class="w-100"
-                    id="submitButton"
-                    [disabled]="materials.length == 0 || isSubmitting"
-                    (click)="addMaterial()">
-              Submit material report
-            </button>
-          </div>
-        </div>
+  <div *ngIf="materials.length > 0">
+    <div class="row w-100 placeholder"
+         *ngFor="let material of materials"
+         long-press
+         (onLongPress)="onLongPress(material)">
+      <div class="col-6 text-start">
+        <p class="item-name">{{ material.Name }}</p>
+        <p class="item-description">{{ material.Description }}</p>
+      </div>
+      <div class="col-6 text-end">
+        {{ material.Quantity | number:'1.0-0' }} {{ material.Unit }}
       </div>
     </div>
   </div>
+</div>
+<div class="box-footer mt-4" *ngIf="step == 1">
+  <button class="add-button"
+          style="margin-right:0.5rem"
+          [disabled]="isSubmitting"
+          (click)="openAddMaterialForm()">
+    Add
+  </button>
+  <button class="submit-button"
+          style="margin-left:0.5rem"
+          [disabled]="materials.length == 0"
+          (click)="next()">
+    Next
+  </button>
+</div>
+
+<div class="attendance_container" *ngIf="step == 2">
+  <div class="row">
+    <mat-form-field class="w-100">
+      <mat-label>Note</mat-label>
+      <textarea style="color:white" matInput></textarea>
+    </mat-form-field>
+  </div>
+</div>
+<div class="box-footer mt-4" *ngIf="step == 2">
+  <button class="add-button"
+          style="margin-right:0.5rem"
+          [disabled]="isSubmitting"
+          (click)="openAddMaterialForm()">
+    Add
+  </button>
+  <button class="submit-button"
+          style="margin-left:0.5rem"
+          [disabled]="materials.length == 0"
+          (click)="next()">
+    Next
+  </button>
+</div>
+
+
+<div class="attendance_container" *ngIf="step == 3 && materials.length > 0">
+  <div *ngIf="materials.length > 0">
+    <div class="row w-100 placeholder" *ngFor="let material of materials">
+      <div class="col-6 text-start">
+        <p class="item-name">{{ material.Name }}</p>
+        <p class="item-description">{{ material.Description }}</p>
+      </div>
+      <div class="col-6 text-end">
+        {{ material.Quantity | number:'1.0-0' }} {{ material.Unit }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="box-footer mt-4" *ngIf="step == 3">
+  <button class="add-button"
+          style="margin-right:0.5rem"
+          [disabled]="isSubmitting"
+          (click)="prev()">
+    Back
+  </button>
+  <button class="submit-button"
+          style="margin-right:0.5rem"
+          [disabled]="isSubmitting"
+          (click)="addMaterial()">
+    Submit
+  </button>
 </div>

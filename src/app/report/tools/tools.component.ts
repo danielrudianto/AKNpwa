@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Tool, ToolReportForm } from '../../interfaces/report';
 import { AuthService } from '../../services/auth.service';
 import { ReportService } from '../../services/report.service';
@@ -15,6 +17,7 @@ import { ReportService } from '../../services/report.service';
 export class ToolsComponent implements OnInit {
   tools: Tool[] = [];
   isSubmitting: boolean = false;
+  step: number = 1;
 
   constructor(
     private dialog: MatDialog,
@@ -22,7 +25,8 @@ export class ToolsComponent implements OnInit {
     private authService: AuthService,
     private router: ActivatedRoute,
     private route: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {
@@ -44,23 +48,58 @@ export class ToolsComponent implements OnInit {
     this.isSubmitting = true;
     const toolReportForm: ToolReportForm = {
       CreatedBy: this.authService.getEmail(),
-      CodeProjectId: parseInt(this.router.snapshot.params.projectId),
+      CodeProjectId: parseInt(this.cookieService.get("projectId")),
       Tools: this.tools
     }
+
     this.reportService.submitToolReport(toolReportForm)
       .subscribe(responseData => {
-          this.tools = [];
-          this.route.navigate(["/Project/Feed/" + this.router.snapshot.params.projectId.toString()]);
+        this.tools = [];
+        this.route.navigate(["/Project/Feed/"]);
       }, error => {
-          this.isSubmitting = false;
-          this.snackBar.open("Close", error.message, {
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom',
-            duration: 2000
-          })
+        this.isSubmitting = false;
+        this.snackBar.open("Close", error.message, {
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          duration: 2000
+        })
       })
   }
 
+  onLongPress(tool: Tool) {
+
+  }
+
+  next() {
+    this.step = 2;
+  }
+
+  prev() {
+    this.step = 1;
+  }
+
+}
+
+@Component({
+  selector: 'tools-menu',
+  templateUrl: 'tools-menu.html'
+})
+export class ToolsMenuComponent {
+  constructor(
+    private sheetRef: MatBottomSheetRef<ToolsMenuComponent>
+  ) { }
+
+  onEditItem() {
+    this.sheetRef.dismiss("edit");
+  }
+
+  onDeleteItem() {
+    this.sheetRef.dismiss("delete");
+  }
+
+  onCloseMenu() {
+    this.sheetRef.dismiss(null);
+  }
 }
 
 @Component({

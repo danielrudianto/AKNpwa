@@ -1,0 +1,12 @@
+<h6 class="text-alpha fr-text mb-3">Projects</h6>
+<swiper
+        [breakpoints]="breakpoints">
+  <ng-template swiperSlide *ngFor="let project of projects">
+    <div class="project-card" (click)="goToProject(project)">
+      <p class="header">{{ project.Name }}</p>
+      <p class="mb-3">{{ project.Address }}</p>
+      <mat-divider></mat-divider>
+      <p class="text-end mt-2">{{ project.Client.Name }}</p>
+    </div>
+  </ng-template>
+</swiper>

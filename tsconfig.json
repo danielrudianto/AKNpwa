@@ -27,6 +27,8 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
     "strictNullChecks": false,
-    "strictPropertyInitialization":  false
+    "strictPropertyInitialization": false,
+    "noImplicitReturns": false,
+    "strictClassInitialization":  false
   }
 }

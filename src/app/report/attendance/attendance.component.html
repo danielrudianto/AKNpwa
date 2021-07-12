@@ -1,67 +1,80 @@
-<div class="container">
-  <div class="row justify-content-center mb-3">
-    <div class="col-lg-6 col-md-8 col-sm-10 col-10">
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Attending Workers
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <mat-list role="list">
-            <mat-list-item role="listitem" *ngFor="let worker of attendingWorkers">
-              <div class="row w-100">
-                <div class="col-lg-6 text-start">
-                  {{ worker.Name }}
-                </div>
-                <div class="col-lg-6 text-end">
-                  {{ worker.Quantity | number:'1.0-0' }}
-                </div>
-              </div>
-            </mat-list-item>
-          </mat-list>
-
-        </mat-expansion-panel>
-        <mat-expansion-panel expanded="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Attendance Report
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <mat-list role="list" *ngIf="workers.length > 0">
-            <mat-list-item role="listitem" *ngFor="let worker of workers">
-              <div class="row w-100">
-                <div class="col-lg-6 text-start">
-                  {{ worker.Name }}
-                </div>
-                <div class="col-lg-6 text-end">
-                  {{ worker.Quantity | number:'1.0-0' }}
-                </div>
-              </div>
-            </mat-list-item>
-          </mat-list>
-          <p *ngIf="workers.length == 0">Worker has not been added.</p>
-          <button mat-raised-button
-                  color="primary"
-                  (click)="openAddAttendanceForm()"
-                  [disabled]="isSubmitting">
-            Add attendance
-          </button>
-        </mat-expansion-panel>
-      </mat-accordion>
+<div class="step-indicator mb-4">
+  <div class="step-1" [class.active]="step == 1"></div>
+  <div class="bridge"></div>
+  <div class="step-2" [class.active]="step == 2"></div>
+</div>
+<div *ngIf="workers.length == 0 && attendingWorkers.length == 0">
+  <img src="assets/images/Empty.png" class="w-100" />
+  <h4 class="text-center text-white mb-3">Workers has not been added.</h4>
+</div>
+<div class="attendance_container" *ngIf="step == 1 && (attendingWorkers.length > 0 || workers.length > 0)">
+  <div *ngIf="attendingWorkers.length > 0">
+    <div class="w-100 read-placeholder" *ngFor="let attendingWorker of attendingWorkers">
+      <div class="row" *ngFor="let worker of attendingWorker.Worker">
+        <div class="col-8 text-start">
+          {{ worker.Name }}
+          <p class="mb-0">{{ attendingWorker.Date | date: 'shortTime' }}</p>
+        </div>
+        <div class="col-4 text-end">
+          {{ worker.Quantity | number:'1.0-0' }}
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8 col-sm-10 col-10">
-      <button mat-raised-button
-              color="primary"
-              class="w-100"
-              [disabled]="workers.length == 0 || isSubmitting"
-              (click)="addAttendance()">
-        Add attendance
-      </button>
+  <div *ngIf="workers.length > 0">
+    <div
+         class="row w-100 placeholder"
+         *ngFor="let worker of workers"
+         long-press
+         (onLongPress)="onLongPress(worker)">
+      <div class="col-8 text-start">
+        {{ worker.Name }}
+      </div>
+      <div class="col-4 text-end">
+        {{ worker.Quantity | number:'1.0-0' }}
+      </div>
     </div>
   </div>
+</div>
+<div class="box-footer mt-4" *ngIf="step == 1">
+  <button class="add-button"
+          style="margin-right:0.5rem"
+          [disabled]="isSubmitting"
+          (click)="openAddAttendanceForm()">
+    Add
+  </button>
+  <button class="submit-button"
+          style="margin-left:0.5rem"
+          [disabled]="workers.length == 0"
+          (click)="next()">
+    Next
+  </button>
+</div>
+
+
+<div class="attendance_container" *ngIf="step == 2 && workers.length > 0">
+  <div *ngIf="workers.length > 0">
+    <div class="row w-100 placeholder" *ngFor="let worker of workers">
+      <div class="col-8 text-start">
+        {{ worker.Name }}
+      </div>
+      <div class="col-4 text-end">
+        {{ worker.Quantity | number:'1.0-0' }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="box-footer mt-4" *ngIf="step == 2">
+  <button class="add-button"
+          style="margin-right:0.5rem"
+          [disabled]="isSubmitting"
+          (click)="prev()">
+    Back
+  </button>
+  <button class="submit-button"
+          style="margin-right:0.5rem"
+          [disabled]="isSubmitting"
+          (click)="addAttendance()">
+    Submit
+  </button>
 </div>

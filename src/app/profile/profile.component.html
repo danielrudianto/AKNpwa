@@ -1,1 +1,37 @@
-<p>profile works!</p>
+<div class="jumbotron h-100">
+  <div class="headerBackground">
+    <div class="navigation">
+      <button mat-button
+              style="float:left;z-index:100;"
+              (click)="backToMain()">
+        <mat-icon style="color:white">keyboard_arrow_left</mat-icon>
+        <h4 class="text-white d-inline-block mb-0 ms-2">Main</h4>
+      </button>
+    </div>
+    <div class="container image_wrapper">
+      <div class="row p-3">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-12 text-center">
+          <img src="assets/images/Profile.png" class="rounded-circle" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container app_container p-3 pt-5">
+    <div class="row">
+      <form *ngIf="user != null">
+        <mat-form-field class="w-100">
+          <mat-label>First Name</mat-label>
+          <input type="text" matInput [value]="user.FirstName" />
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Last Name</mat-label>
+          <input type="text" matInput [value]="user.LastName" />
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Email</mat-label>
+          <input type="text" matInput [value]="user.Email" />
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</div>

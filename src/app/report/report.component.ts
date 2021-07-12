@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-report',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route: Router,
+    private router: ActivatedRoute
+  ){ }
 
   ngOnInit(): void {
   }
 
+  backToProject() {
+    this.route.navigate(["/Project/Feed"]);
+  }
 }

@@ -54,8 +54,17 @@ export class AuthService {
     return decoded.Email;
   }
 
-  getName() {
+  getInfo() {
     const decoded: any = jwt_decode(localStorage.getItem("id_token")!.toString());
-    return decoded.FirstName + " " + decoded.LastName;
+    return {
+      Name: decoded.FirstName + " " + decoded.LastName,
+      Position: decoded.Position.Position,
+      ImageUrl: decoded.ImageUrl,
+      ThumbnailUrl: decoded.ThumbnailUrl
+    }
+  }
+
+  getProfile() {
+    return this.http.get(global.url + "/user/profile");
   }
 }

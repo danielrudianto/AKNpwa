@@ -1,1 +1,33 @@
-<p>progress works!</p>
+<div class="row justify-content-center mb-3 h-100 d-flex">
+  <div class="col-lg-4 col-md-6 col-sm-8 col-12 p-3 h-100">
+    <mat-form-field class="w-100">
+      <mat-label>Progress</mat-label>
+      <textarea matInput
+                style="color:white"
+                rows="15"
+                [(ngModel)]="progress"></textarea>
+    </mat-form-field>
+    <input type="file"
+           capture="camera"
+           accept="image/*"
+           id="cameraInput"
+           class="d-none"
+           (change)="onFileSelected($event)" />
+    <swiper [breakpoints]="breakpoints">
+      <ng-template swiperSlide *ngFor="let documentation of documentations">
+        <p>{{ documentation }}</p>
+      </ng-template>
+    </swiper>
+    <button mat-raised-button
+            color="accent"
+            (click)="openMediaPicker()">
+      <mat-icon>add_photo_alternate</mat-icon> Add Documentation
+    </button>
+    <button
+            class="w-100 mt-3 submit-button"
+            (click)="submitForm()"
+            [disabled]="isSubmitting || progress == ''">
+      Submit
+    </button>
+  </div>
+</div>

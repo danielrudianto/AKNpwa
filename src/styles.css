@@ -1,7 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Francois One;
+  src: url("/assets/fonts/FrancoisOne.ttf") format("truetype");
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: sans-serif, "Helvetica Neue", Roboto; }
+html, body {
+    height: 100%;
+    max-width:768px!important;
+}
+
+body {
+  margin: 0;
+  background-color: #3E3E3E!important;
+}
+
 .navbar{
     width:100%;
     padding:1rem 2rem;
@@ -12,4 +24,20 @@ body { margin: 0; font-family: sans-serif, "Helvetica Neue", Roboto; }
     left:0;
     background-color:white;
     box-shadow:2px 2px 3px 2px rgba(0, 0, 0, 0.05);
+}
+
+.snack-bar{
+    background-color:white;
+}
+
+.mat-snack-bar-container{
+    color:black!important;
+}
+
+.fr-text{
+    font-family:"Francois One", sans-serif
+}
+
+.text-alpha {
+  color: #ED811E;
 }

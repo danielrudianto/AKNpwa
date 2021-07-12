@@ -13,13 +13,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { ReportComponent } from './report/report.component';
-import { MaterialComponent, MaterialEditFormComponent, MaterialFormComponent } from './report/material/material.component';
-import { ToolFormComponent, ToolsComponent } from './report/tools/tools.component';
+import { MaterialComponent, MaterialEditFormComponent, MaterialFormComponent, MaterialMenuComponent } from './report/material/material.component';
+import { ToolFormComponent, ToolsComponent, ToolsMenuComponent } from './report/tools/tools.component';
 import { RfiComponent } from './report/rfi/rfi.component';
 import { WeatherComponent } from './report/weather/weather.component';
-import { AttendanceComponent, AttendanceFormComponent } from './report/attendance/attendance.component';
+import { AttendanceComponent, AttendanceEditFormComponent, AttendanceFormComponent, AttendanceMenuComponent } from './report/attendance/attendance.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FeedComponent, FeedMenuComponent } from './project/feed/feed.component';
 import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
@@ -32,11 +32,20 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { DailyComponent } from './report/daily/daily.component';
 import { ProgressComponent } from './report/progress/progress.component';
+import { LongPress } from './shared/longpress/longpress';
+import { MediaPickerComponent } from './shared/mediaPicker/media-picker';
+import { MainHeaderComponent } from './main/main-header/main-header.component';
+import { MainProjectsComponent } from './main/main-projects/main-projects.component';
+import { MainFeedsComponent } from './main/main-feeds/main-feeds.component';
+
+import { CookieService } from 'ngx-cookie-service';
+import { SuccessComponent } from './success/success.component';
 
 @NgModule({
   declarations: [
@@ -59,8 +68,18 @@ import { ProgressComponent } from './report/progress/progress.component';
     ProgressComponent,
     AttendanceFormComponent,
     ToolFormComponent,
+    ToolsMenuComponent,
     MaterialFormComponent,
-    MaterialEditFormComponent
+    MaterialEditFormComponent,
+    MaterialMenuComponent,
+    LongPress,
+    MediaPickerComponent,
+    MainHeaderComponent,
+    MainProjectsComponent,
+    MainFeedsComponent,
+    AttendanceEditFormComponent,
+    AttendanceMenuComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -82,14 +101,17 @@ import { ProgressComponent } from './report/progress/progress.component';
     SwiperModule,
     MatSnackBarModule,
     MatIconModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FormsModule,
+    MatTabsModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    CookieService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -97,7 +119,12 @@ import { ProgressComponent } from './report/progress/progress.component';
     AttendanceFormComponent,
     ToolFormComponent,
     MaterialFormComponent,
-    MaterialEditFormComponent
+    MaterialEditFormComponent,
+    MaterialMenuComponent,
+    MediaPickerComponent,
+    AttendanceEditFormComponent,
+    AttendanceMenuComponent,
+    ToolsMenuComponent
   ]
 })
 export class AppModule { }

@@ -3,14 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\interfaces",
-    "\\src\\app\\main",
-    "\\src\\app\\profile",
     "\\src\\app\\report",
-    "\\src\\app\\report\\material",
     "\\src\\app\\report\\progress",
-    "\\src\\assets"
+    "\\src\\app\\report\\weather",
+    "\\src\\assets",
+    "\\src\\assets\\fonts",
+    "\\src\\assets\\images"
   ],
-  "SelectedNode": "\\src\\app\\services\\project.service.ts",
+  "SelectedNode": "\\src\\app\\report\\progress\\progress.component.ts",
   "PreviewInSolutionExplorer": false
 }

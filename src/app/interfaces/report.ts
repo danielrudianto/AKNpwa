@@ -53,4 +53,5 @@ export interface Material {
   Quantity: number;
   Unit: string;
   CodeReportId?: number;
+  Status: number;
 }

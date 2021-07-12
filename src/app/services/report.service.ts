@@ -25,7 +25,14 @@ export class ReportService {
   }
 
   submitMaterialReport(materialReport: MaterialReportForm) {
-    return this.http.post(global.url + "/materialReport", materialReport)
+    return this.http.post(global.url + "/reportMaterial", materialReport)
+  }
+
+  submitProgressReport(formData: FormData) {
+    return this.http.post(global.url + "/reportStatus", formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
   }
 
   fetchTodayWorker(projectId: number) {
