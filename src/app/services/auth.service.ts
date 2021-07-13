@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import * as global from '../global';
 import jwt_decode from "jwt-decode";
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,6 @@ export class AuthService {
   }
 
   getProfile() {
-    return this.http.get(global.url + "/user/profile");
+    return this.http.get < User >(global.url + "/user/profile");
   }
 }

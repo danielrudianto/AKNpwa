@@ -41,6 +41,7 @@ export class MaterialComponent implements OnInit {
       Materials:this.materials
     }).subscribe(responseData => {
       this.isSubmitting = false;
+      this.backToProject();
     }, error => {
         this.snackBar.open(error.message, "Close", {
           duration: 2000,

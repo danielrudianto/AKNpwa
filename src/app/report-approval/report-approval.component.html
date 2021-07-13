@@ -1,0 +1,27 @@
+<div class="p-2 pb-0">
+  <hr class="w-100" />
+  <ul>
+    <li>
+      <button
+              [disabled]="selfSigned"
+              (click)="approveReport()"
+              mat-icon-button>
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+    </li>
+    <li>
+      <button
+              [disabled]="selfSigned"
+              (click)="disapproveReport()"
+              mat-icon-button>
+        {{ }}
+        <mat-icon>thumb_down</mat-icon>
+      </button>
+    </li>
+    <li>
+      <button mat-icon-button>
+        <mat-icon>comment</mat-icon>
+      </button>
+    </li>
+  </ul>
+</div>

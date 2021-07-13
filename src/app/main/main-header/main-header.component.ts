@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import * as global from '../../global';
 
 @Component({
   selector: 'app-main-header',
@@ -18,7 +19,7 @@ export class MainHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.authService.getInfo().Name;
     this.position = this.authService.getInfo().Position;
-    this.imageUrl = this.authService.getInfo().ImageUrl;
+    this.imageUrl = global.url + "/img/" + this.authService.getInfo().ImageUrl;
   }
 
 }

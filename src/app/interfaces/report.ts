@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export interface WeatherReportForm {
   WeatherId: number;
   CodeProjectId: number;
@@ -54,4 +56,14 @@ export interface Material {
   Unit: string;
   CodeReportId?: number;
   Status: number;
+}
+
+export interface Approvals {
+  Id?: number;
+  CreatedBy: number | string;
+  CreatedDate: Date;
+  Approval: number;
+  Comment: string;
+  ReportId?: number;
+  User?: User;
 }

@@ -33,6 +33,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
@@ -46,6 +47,8 @@ import { MainFeedsComponent } from './main/main-feeds/main-feeds.component';
 
 import { CookieService } from 'ngx-cookie-service';
 import { SuccessComponent } from './success/success.component';
+import { ReportApprovalComponent } from './report-approval/report-approval.component';
+import { RfiAnswerComponent } from './rfi-answer/rfi-answer.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,9 @@ import { SuccessComponent } from './success/success.component';
     MainFeedsComponent,
     AttendanceEditFormComponent,
     AttendanceMenuComponent,
-    SuccessComponent
+    SuccessComponent,
+    ReportApprovalComponent,
+    RfiAnswerComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +108,8 @@ import { SuccessComponent } from './success/success.component';
     MatIconModule,
     MatSlideToggleModule,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule
   ],
   providers: [
     {

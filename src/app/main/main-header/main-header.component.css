@@ -1,3 +1,19 @@
 .position-text {
   font-size: 0.8rem !important;
 }
+
+.user-profile {
+  height: 60px;
+  width: 60px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  display:inline-block;
+  margin-right:1rem;
+  position:relative;
+}
+
+.user-profile-text{
+    position:relative;
+    display:inline-block;
+}

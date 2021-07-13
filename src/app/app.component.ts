@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import { SocketService } from './services/socket.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   title = 'AKNpwa';
 
+  constructor(
+    private socketService: SocketService
+  ) {}
+
   ngOnInit(): void {
     this.onlineEvent = fromEvent(window, 'online');
     this.offlineEvent = fromEvent(window, 'offline');
@@ -26,6 +31,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.offlineEvent.subscribe(e => {
       this.connectionStatus = 'offline';
     }));
+
+    this.socketService.setupSocketConnection();
   }
 
   ngOnDestroy(): void {
