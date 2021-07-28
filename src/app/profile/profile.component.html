@@ -17,11 +17,10 @@
                    class="d-none"
                    (change)="uploadProfilePicture($event)" />
             <label for="file" class="w-100">
-              <div
-                   [ngStyle]="{'background-image': user.ImageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + global.url + '/img/' + user.ImageUrl + ')'}"
+              <div [ngStyle]="{'background-image': user.ImageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + global.url + '/img/' + user.ImageUrl + ')'}"
                    class="rounded-circle"></div>
             </label>
-            
+
 
             <form *ngIf="user != null">
               <mat-form-field class="w-100">
@@ -46,10 +45,11 @@
                        [value]="user.Email" />
               </mat-form-field>
             </form>
-            <button
-                    (click)="openResetPassword()"
+            <button (click)="openResetPassword()"
                     mat-raised-button
-                    class="mb-3">Reset Password</button>
+                    class="mb-3">
+              Reset Password
+            </button>
 
             <div class="position-container">
               <h4 class="fr-text text-alpha">Positions</h4>
@@ -70,6 +70,12 @@
                 </div>
               </div>
             </div>
+
+            <button (click)="logout()"
+                    mat-raised-button
+                    class="mt-3 w-100">
+              Logout
+            </button>
           </div>
         </div>
       </div>

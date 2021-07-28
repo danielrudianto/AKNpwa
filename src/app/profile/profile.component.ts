@@ -57,9 +57,14 @@ export class ProfileComponent implements OnInit {
 
   openResetPassword() {
     this.dialog.open(ResetPasswordComponent, {
-      minWidth: 400,
+      minWidth: 250,
       disableClose: true
     })
+  }
+
+  logout() {
+    this.authService.logout();
+    this.route.navigate(["/Login"]);
   }
 }
 

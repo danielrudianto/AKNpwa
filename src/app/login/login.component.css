@@ -3,12 +3,13 @@
   height: 100%;
 }
 
-  .form-body > .row {
-    position: relative;
-    margin-left: 0;
-    margin-right: 0;
-    height: 100%;
-  }
+.form-body > .row {
+  position: absolute;
+  margin-left: 0;
+  margin-right: 0;
+  top:0;
+  height: 100%;
+}  
 
 .website-logo {
   display: inline-block;
@@ -123,7 +124,6 @@
   top: 0;
   left: 0;
   width: 550px;
-  min-height: 700px;
   height: 100%;
   overflow: hidden;
   background-color: #000000;
