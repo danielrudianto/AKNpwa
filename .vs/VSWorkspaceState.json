@@ -3,14 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\interfaces",
-    "\\src\\app\\main",
-    "\\src\\app\\profile",
+    "\\src\\app\\image-view",
     "\\src\\app\\project",
+    "\\src\\app\\project\\feed",
     "\\src\\app\\report",
-    "\\src\\app\\report-approval",
-    "\\src\\app\\report\\material"
+    "\\src\\app\\report\\daily",
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\report-approval\\report-approval.component.ts",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }

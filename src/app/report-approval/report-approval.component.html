@@ -2,26 +2,60 @@
   <hr class="w-100" />
   <ul>
     <li>
-      <button
-              [disabled]="selfSigned"
+      <button [disabled]="approvals | ReportApprovalSigned"
+              class="me-2"
+              [class.text-alpha]="approvals | ReportApprovalColor: 1"
               (click)="approveReport()"
+              matTooltip="Approve"
+              matTooltipShowDelay="0"
+              matTooltipClass="custom-tooltip"
+              matTooltipPosition="right"
               mat-icon-button>
+        {{ approvals | ReportApprovalCount: 1 }}
         <mat-icon>thumb_up</mat-icon>
       </button>
     </li>
     <li>
-      <button
-              [disabled]="selfSigned"
+      <button [disabled]="approvals | ReportApprovalSigned"
+              class="me-2"
+              [class.text-alpha]="approvals | ReportApprovalColor: 2"
               (click)="disapproveReport()"
+              matTooltip="Disapprove"
+              matTooltipShowDelay="0"
+              matTooltipClass="custom-tooltip"
+              matTooltipPosition="right"
               mat-icon-button>
-        {{ }}
+        {{ approvals | ReportApprovalCount: 2 }}
         <mat-icon>thumb_down</mat-icon>
       </button>
     </li>
     <li>
-      <button mat-icon-button>
-        <mat-icon>comment</mat-icon>
+      <button matTooltip="View approvals"
+              matTooltipShowDelay="0"
+              matTooltipClass="custom-tooltip"
+              matTooltipPosition="right"
+              (click)="openApprovals()"
+              mat-icon-button>
+        <mat-icon>view_list</mat-icon>
       </button>
     </li>
   </ul>
+
+  <button (click)="openComments()"
+          class="transparent-button">
+    View comments
+  </button>
+  <div *ngIf="comments.length > 0">
+    <div class="comment-ul" *ngFor="let comment of comments;index as i">
+      <div class="comment-wrapper" *ngIf="i < 2">
+        <div [ngStyle]="{'background-image': comment.User.ImageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + global.url + '/img/' + comment.User.ImageUrl + ')'}"
+             class="comment-thumbnail"></div>
+        <div class="comment-text-wrapper">
+          <p class="fr-text text-alpha mb-0">{{ comment.User.FirstName }} {{ comment.User.LastName }}</p>
+          <p class="comment-timestamp">{{ comment.CreatedDate | date: 'dd MMM YY HH:mm' }}</p>
+          <p class="mb-0">{{ comment.Comment }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

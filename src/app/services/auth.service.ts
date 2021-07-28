@@ -50,13 +50,17 @@ export class AuthService {
     return localStorage.getItem("id_token");
   }
 
+  updateToken(token: string) {
+    localStorage.setItem("id_token", token);
+  }
+
   getEmail() {
     const decoded: any = jwt_decode(localStorage.getItem("id_token")!.toString());
     return decoded.Email;
   }
 
-  getInfo() {
-    const decoded: any = jwt_decode(localStorage.getItem("id_token")!.toString());
+  getInfo(token: string = localStorage.getItem("id_token")!.toString()) {
+    const decoded: any = jwt_decode(token);
     return {
       Name: decoded.FirstName + " " + decoded.LastName,
       Position: decoded.Position.Position,
@@ -67,5 +71,16 @@ export class AuthService {
 
   getProfile() {
     return this.http.get < User >(global.url + "/user/profile");
+  }
+
+  register(email: string, password: string) {
+    return this.http.post(global.url + '/auth/register', {
+      "Email": email,
+      "Password": password
+    })
+  }
+
+  getUpdatedToken() {
+    return this.http.get(global.url + "/auth");
   }
 }

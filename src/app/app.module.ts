@@ -47,8 +47,17 @@ import { MainFeedsComponent } from './main/main-feeds/main-feeds.component';
 
 import { CookieService } from 'ngx-cookie-service';
 import { SuccessComponent } from './success/success.component';
-import { ReportApprovalComponent } from './report-approval/report-approval.component';
+import { ReportApprovalComponent, ReportApprovalListComponent, ReportCommentListComponent } from './report-approval/report-approval.component';
 import { RfiAnswerComponent } from './rfi-answer/rfi-answer.component';
+import { ReportCommentComponent } from './report-comment/report-comment.component';
+import { ReportApprovalColorPipe } from './pipes/report-approval-color.pipe';
+import { ReportApprovalCountPipe } from './pipes/report-approval-count.pipe';
+import { ReportApprovalSignedPipe } from './pipes/report-approval-signed.pipe ';
+import { ImageViewComponent } from './image-view/image-view.component';
+import { ImageViewWrapperDirective } from './image-view-wrapper/image-view-wrapper.directive';
+import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 
 @NgModule({
   declarations: [
@@ -84,7 +93,16 @@ import { RfiAnswerComponent } from './rfi-answer/rfi-answer.component';
     AttendanceMenuComponent,
     SuccessComponent,
     ReportApprovalComponent,
-    RfiAnswerComponent
+    RfiAnswerComponent,
+    ReportCommentComponent,
+    ReportApprovalListComponent,
+    ReportCommentListComponent,
+    ReportApprovalColorPipe,
+    ReportApprovalCountPipe,
+    ReportApprovalSignedPipe,
+    ImageViewComponent,
+    ImageViewWrapperDirective,
+
   ],
   imports: [
     BrowserModule,
@@ -109,7 +127,9 @@ import { RfiAnswerComponent } from './rfi-answer/rfi-answer.component';
     MatSlideToggleModule,
     FormsModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    NgImageFullscreenViewModule,
+    MatDatepickerModule
   ],
   providers: [
     {
@@ -130,7 +150,10 @@ import { RfiAnswerComponent } from './rfi-answer/rfi-answer.component';
     MediaPickerComponent,
     AttendanceEditFormComponent,
     AttendanceMenuComponent,
-    ToolsMenuComponent
+    ToolsMenuComponent,
+    ReportApprovalListComponent,
+    ReportCommentListComponent,
+    ImageViewComponent
   ]
 })
 export class AppModule { }

@@ -1,40 +1,47 @@
-.jumbotron {
-  background-color: #ddd;
-}
-
-.app_container {
-  height: 70%;
-  top: 30%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: white;
-  border-top-left-radius: 3rem;
-  border-top-right-radius: 3rem;
-}
-
-.headerBackground {
-  background-color: #4c3c29;
-  width: 100%;
-  height: 50%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.image_wrapper{
-    position:absolute;
-    width:100%;
-    padding:1rem 2rem;
-    padding-top:3rem;
-    top:0;
-    width:100%;
-}
-
-.image_wrapper img{
-    width:40%!important;
-}
-
 .navigation {
   padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
+
+input{
+    color:white;
+}
+
+.rounded-circle{
+    width:80px;
+    height:80px;
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.position-container {
+  width: 100%;
+  background-color: transparent;
+}
+
+.position {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+.site-engineer {
+  background-color: #FFACAC;
+}
+
+.site-manager {
+  background-color: #FF8C8C;
+}
+
+.project-manager {
+  background-color: #FF5E5E;
+}
+
+.director {
+  background-color: #8F3030;
+}
+

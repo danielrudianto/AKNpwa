@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CodeProject } from '../../interfaces/project';
 import { ProjectService } from '../../services/project.service';
+import { SocketService } from '../../services/socket.service';
 
 @Component({
   selector: 'app-main-projects',
@@ -16,11 +17,16 @@ export class MainProjectsComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private router: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private socketService: SocketService
   ) { }
 
   ngOnInit(): void {
     this.fetchProject();
+
+    this.socketService.socket.on("newProject", (data: any) => {
+      this.fetchProject();
+    })
   }
 
   fetchProject() {
@@ -42,9 +48,8 @@ export class MainProjectsComponent implements OnInit {
   }
 
   breakpoints = {
-    640: { slidesPerView: 1, spaceBetween: 20 },
-    768: { slidesPerView: 2, spaceBetween: 40 },
-    1024: { slidesPerView: 3, spaceBetween: 50 }
+    300: { slidesPerView: 1, spaceBetween: 10 },
+    640: { slidesPerView: 2, spaceBetween: 20 },
   };
 
 }

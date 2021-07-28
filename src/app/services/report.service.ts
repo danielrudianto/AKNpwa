@@ -38,4 +38,14 @@ export class ReportService {
   fetchTodayWorker(projectId: number) {
     return this.http.get(global.url + "/reportWorker/getToday/" + projectId.toString());
   }
+
+  downloadDailyReport(date: Date, projectId: number) {
+    return this.http.get(global.url + '/reportDaily', {
+      params: {
+        date: date.toISOString(),
+        projectId: projectId
+      },
+      responseType: 'blob'
+    })
+  }
 }

@@ -1,0 +1,36 @@
+<h5 class="fr-text text-alpha">Approvals</h5>
+<p *ngIf="approvals.length == 0">There is no approval found.</p>
+<div class="reportApprovalContainer" *ngIf="approvals.length > 0">
+  <div infiniteScroll
+       class="scroll"
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="50"
+       [infiniteScrollContainer]="selector"
+       [fromRoot]="true"
+       (scrolled)="onScroll()">
+    <mat-card *ngFor="let approval of approvals" class="mb-2">
+      <div class="comment-wrapper">
+        <div mat-card-avatar
+             [ngStyle]="{'background-image': approval.User.ImageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + global.url + '/img/' + approval.User.ImageUrl + ')'}"
+             class="user-thumbnail"></div>
+        <div class="user-text">
+          <p class="mb-0">
+            <span class="text-alpha">{{ approval.User.FirstName }} {{ approval.User.LastName }} </span>
+            <span *ngIf="approval.Approval == 1">approved this report.</span>
+            <span *ngIf="approval.Approval == 2">disapproved this report.</span>
+          </p>
+          <p class="comment-timestamp">{{ approval.CreatedDate | date: 'dd MMM YY HH: mm' }}</p>
+        </div>
+
+        <div class="text-end" *ngIf="position >= 3">
+          <button
+                  (click)="deleteApproval(approval.Id)"
+                  class="text-alpha"
+                  mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

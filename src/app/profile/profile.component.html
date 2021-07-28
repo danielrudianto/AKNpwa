@@ -1,37 +1,73 @@
-<div class="jumbotron h-100">
-  <div class="headerBackground">
-    <div class="navigation">
-      <button mat-button
-              style="float:left;z-index:100;"
-              (click)="backToMain()">
-        <mat-icon style="color:white">keyboard_arrow_left</mat-icon>
-        <h4 class="text-white d-inline-block mb-0 ms-2">Main</h4>
-      </button>
-    </div>
-    <div class="container image_wrapper">
-      <div class="row p-3">
-        <div class="col-lg-6 col-md-8 col-sm-10 col-12 text-center">
-          <img src="assets/images/Profile.png" class="rounded-circle" />
+<div class="navigation">
+  <button mat-button
+          (click)="backToMain()">
+    <mat-icon style="color:white">keyboard_arrow_left</mat-icon>
+    <h6 class="fr-text text-white d-inline-block mb-0 ms-1">Main</h6>
+  </button>
+</div>
+<div class="container h-100">
+  <div class="row justify-content-center">
+    <div class="col-12 p-0">
+      <div class="container" *ngIf="user != null">
+        <div class="row p-5">
+          <div class="col-12">
+            <input id="file"
+                   type="file"
+                   accept="image/png, image/gif, image/jpeg"
+                   class="d-none"
+                   (change)="uploadProfilePicture($event)" />
+            <label for="file" class="w-100">
+              <div
+                   [ngStyle]="{'background-image': user.ImageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + global.url + '/img/' + user.ImageUrl + ')'}"
+                   class="rounded-circle"></div>
+            </label>
+            
+
+            <form *ngIf="user != null">
+              <mat-form-field class="w-100">
+                <mat-label>First Name</mat-label>
+                <input readonly
+                       type="text"
+                       matInput
+                       [value]="user.FirstName" />
+              </mat-form-field>
+              <mat-form-field class="w-100">
+                <mat-label>Last Name</mat-label>
+                <input readonly
+                       type="text"
+                       matInput
+                       [value]="user.LastName" />
+              </mat-form-field>
+              <mat-form-field class="w-100">
+                <mat-label>Email</mat-label>
+                <input readonly
+                       type="text"
+                       matInput
+                       [value]="user.Email" />
+              </mat-form-field>
+            </form>
+
+            <div class="position-container">
+              <div class="position"
+                   [class.site-engineer]="userPosition.Position === 1"
+                   [class.site-manager]="userPosition.Position === 2"
+                   [class.project-manager]="userPosition.Position === 3"
+                   [class.director]="userPosition.Position === 4"
+                   *ngFor="let userPosition of user.UserPosition; index as i">
+                <div [ngSwitch]="userPosition.Position">
+                  <span class="fr-text" *ngSwitchCase="1">Site Engineer</span>
+                  <span class="fr-text" *ngSwitchCase="2">Site Manager</span>
+                  <span class="fr-text" *ngSwitchCase="3">Project Manager</span>
+                  <span class="fr-text" *ngSwitchCase="4">Director</span>
+
+                  <span class="fr-text ms-2" *ngIf="i == 0">( Current )</span>
+                  <p class="fr-text text-white mb-0">Since {{ userPosition.EffectiveDate | date: 'dd MMM YY' }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container app_container p-3 pt-5">
-    <div class="row">
-      <form *ngIf="user != null">
-        <mat-form-field class="w-100">
-          <mat-label>First Name</mat-label>
-          <input type="text" matInput [value]="user.FirstName" />
-        </mat-form-field>
-        <mat-form-field class="w-100">
-          <mat-label>Last Name</mat-label>
-          <input type="text" matInput [value]="user.LastName" />
-        </mat-form-field>
-        <mat-form-field class="w-100">
-          <mat-label>Email</mat-label>
-          <input type="text" matInput [value]="user.Email" />
-        </mat-form-field>
-      </form>
     </div>
   </div>
 </div>

@@ -3,7 +3,8 @@ export interface User {
   Email: string;
   FirstName: string;
   LastName: string;
-  Position: UserPosition[];
+  UserPosition: UserPosition[];
+  ImageUrl: string | null;
 }
 
 export interface UserLogin {

@@ -1,0 +1,70 @@
+.reportApprovalContainer {
+  height: 75vh;
+  overflow-y: scroll;
+  overflow-x:hidden;
+  position: relative;
+  display: block;
+}
+
+.comment-timestamp{
+    font-size:0.8rem;
+    color:rgba(0, 0, 0, 0.54);
+    margin-bottom:0;
+    text-align:start;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.54);
+  margin-bottom: 0;
+  text-align: end;
+}
+
+.user-thumbnail {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  position:absolute;
+  top:0px;
+  left:0px;
+}
+
+.user-text{
+  position:relative;
+  width:calc(100% - 35px);
+  min-height:25px;
+  margin-left:35px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+  ::-webkit-scrollbar:hover {
+    width: 1rem;
+  }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  width: 0.25rem;
+}
+
+.comment-wrapper{
+    position:relative;
+    width:100%;
+}

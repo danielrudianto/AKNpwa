@@ -1,3 +1,4 @@
+<ng-template imageView></ng-template>
 <button class="menu-button" (click)="openMenu()"></button>
 <div class="feed-container">
   <div infiniteScroll
@@ -12,7 +13,7 @@
               *ngFor="let feed of feeds;index as i">
       <mat-card-header>
         <div mat-card-avatar
-             [ngStyle]="{'background-image': feed.User.ImageUrl == null ? '/assets/images/Profile.png' : 'url(' + global.url + '/img/' + feed.User.ImageUrl + ')'}"
+             [ngStyle]="{'background-image': feed.User.ImageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + global.url + '/img/' + feed.User.ImageUrl + ')'}"
              class="user-thumbnail d-inline-block"></div>
         <mat-card-title class="fr-text mb-0">{{ feed.User.FirstName }} {{ feed.User.LastName }}</mat-card-title>
         <mat-card-subtitle [ngSwitch]="feed.Type">
@@ -42,6 +43,10 @@
               </tr>
             </tbody>
           </table>
+          <app-report-approval [reportId]="feed.Id"
+                               [comments]="feed.CodeReportApprovalComment"
+                               [approvals]="feed.CodeReportApproval"></app-report-approval>
+          <app-report-comment [reportId]="feed.Id"></app-report-comment>
         </div>
         <div *ngSwitchCase="2">
           <table class="table table-light">
@@ -60,6 +65,10 @@
               </tr>
             </tbody>
           </table>
+          <app-report-approval [reportId]="feed.Id"
+                               [comments]="feed.CodeReportApprovalComment"
+                               [approvals]="feed.CodeReportApproval"></app-report-approval>
+          <app-report-comment [reportId]="feed.Id"></app-report-comment>
         </div>
         <div *ngSwitchCase="3">
           <table class="table table-light">
@@ -78,9 +87,10 @@
               </tr>
             </tbody>
           </table>
-          <app-report-approval
-                               [approvals]="feed.CodeReportApproval"
-                               [reportId]="feed.Id"></app-report-approval>
+          <app-report-approval [reportId]="feed.Id"
+                               [comments]="feed.CodeReportApprovalComment"
+                               [approvals]="feed.CodeReportApproval"></app-report-approval>
+          <app-report-comment [reportId]="feed.Id"></app-report-comment>
         </div>
         <div *ngSwitchCase="4">
           <p class="fr-text">
@@ -115,7 +125,7 @@
             <ng-template swiperSlide
                          *ngFor="let image of feed.RequestForInformation.RequestForInformationDocument">
               <div [ngStyle]="{'background-image': 'url(' + global.url + '/img/' + image.ImageUrl + ')'}"
-                   (click)="viewImage(image.ImageUrl)"
+                   (click)="viewImage(image)"
                    class="documentation-wrapper"></div>
               <p class="fr-text text-center">{{ image.Name }}</p>
             </ng-template>
@@ -131,11 +141,15 @@
             <ng-template swiperSlide
                          *ngFor="let image of feed.StatusReport.StatusReportImage">
               <div [ngStyle]="{'background-image': 'url(' + global.url + '/img/' + image.ImageUrl + ')'}"
-                   (click)="viewImage(image.ImageUrl)"
+                   (click)="viewImage(image)"
                    class="documentation-wrapper"></div>
               <p class="fr-text text-center">{{ image.Name }}</p>
             </ng-template>
           </swiper>
+          <app-report-approval [reportId]="feed.Id"
+                               [comments]="feed.CodeReportApprovalComment"
+                               [approvals]="feed.CodeReportApproval"></app-report-approval>
+          <app-report-comment [reportId]="feed.Id"></app-report-comment>
         </div>
       </mat-card-content>
     </mat-card>

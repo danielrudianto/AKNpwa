@@ -1,12 +1,16 @@
-<h6 class="text-alpha fr-text mb-3">Projects</h6>
+<h5 class="text-alpha fr-text mb-3">Projects</h5>
 <swiper
+        *ngIf="projects.length > 0"
         [breakpoints]="breakpoints">
   <ng-template swiperSlide *ngFor="let project of projects">
     <div class="project-card" (click)="goToProject(project)">
-      <p class="header">{{ project.Name }}</p>
+      <p class="header fr-text text-alpha">{{ project.Name }}</p>
       <p class="mb-3">{{ project.Address }}</p>
       <mat-divider></mat-divider>
       <p class="text-end mt-2">{{ project.Client.Name }}</p>
     </div>
   </ng-template>
 </swiper>
+<p *ngIf="projects.length == 0" class="fr-text text-white">
+  There is no project found.
+</p>

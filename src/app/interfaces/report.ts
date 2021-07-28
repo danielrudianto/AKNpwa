@@ -1,5 +1,14 @@
 import { User } from './user';
 
+export interface CodeReport {
+  Id?: number;
+  CreatedBy?: number | string;
+  CreatedDate: Date;
+  Type: number;
+  Material: Material[];
+  Tools?: Tool[];
+}
+
 export interface WeatherReportForm {
   WeatherId: number;
   CodeProjectId: number;
@@ -60,10 +69,21 @@ export interface Material {
 
 export interface Approvals {
   Id?: number;
-  CreatedBy: number | string;
-  CreatedDate: Date;
   Approval: number;
   Comment: string;
-  ReportId?: number;
+  CreatedBy?: number | string;
   User?: User;
+  CodeReportId: number;
+  CodeReport?: CodeReport;
+  CreatedDate?: Date;
 }
+
+export interface RFIAnswer {
+  Id?: number;
+  Answer: string;
+  User?: User;
+  CreatedBy?: number | string;
+  RequestForInformationId?: number;
+  CreatedDate: Date;
+}
+

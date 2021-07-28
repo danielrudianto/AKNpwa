@@ -1,1 +1,6 @@
-
+.user-thumbnail{
+    background-size:cover;
+    background-position:center;
+    height:50px;
+    width:50px;
+}

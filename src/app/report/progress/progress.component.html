@@ -13,11 +13,29 @@
            id="cameraInput"
            class="d-none"
            (change)="onFileSelected($event)" />
-    <swiper [breakpoints]="breakpoints">
-      <ng-template swiperSlide *ngFor="let documentation of documentations">
-        <p>{{ documentation }}</p>
-      </ng-template>
-    </swiper>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="documentations.length > 0">
+        <tr *ngFor="let documentation of documentations">
+          <td>{{ documentation.name }}</td>
+          <td class="text-alpha">
+            <button mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="documentations.length == 0">
+        <tr>
+          <td colspan="2">There is no documentation added.</td>
+        </tr>
+      </tbody>
+    </table>
     <button mat-raised-button
             color="accent"
             (click)="openMediaPicker()">

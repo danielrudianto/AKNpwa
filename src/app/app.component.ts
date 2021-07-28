@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import { AuthService } from './services/auth.service';
 import { SocketService } from './services/socket.service';
 
 @Component({
@@ -17,12 +18,19 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'AKNpwa';
 
   constructor(
-    private socketService: SocketService
+    private socketService: SocketService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.onlineEvent = fromEvent(window, 'online');
     this.offlineEvent = fromEvent(window, 'offline');
+
+    this.authService.getUpdatedToken().subscribe((data: any) => {
+      this.authService.updateToken(data.token);
+    }, error => {
+      this.authService.logout();
+    })
 
     this.subscriptions.push(this.onlineEvent.subscribe(e => {
       this.connectionStatus = 'online';

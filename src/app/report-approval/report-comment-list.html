@@ -1,0 +1,34 @@
+<h5 class="fr-text text-alpha">Comments</h5>
+<p *ngIf="approvals.length == 0">There is no comment found.</p>
+<div class="reportApprovalContainer" *ngIf="approvals.length > 0">
+  <div infiniteScroll
+       class="scroll"
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="50"
+       [infiniteScrollContainer]="selector"
+       [fromRoot]="true"
+       (scrolled)="onScroll()">
+    <mat-card *ngFor="let approval of approvals" class="mb-2">
+      <div class="comment-wrapper">
+        <div [ngStyle]="{'background-image': approval.User.ImageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + global.url + '/img/' + approval.User.ImageUrl + ')'}"
+             class="user-thumbnail"></div>
+        <div class="user-text">
+          <p class="mb-0 text-alpha">
+            {{ approval.User.FirstName }} {{ approval.User.LastName }}
+          </p>
+          <p class="comment-timestamp">{{ approval.CreatedDate | date: 'dd MMM YY HH: mm' }}</p>
+          <p>{{ approval.Comment }}</p>
+
+          <div class="text-end"  *ngIf="position >= 3">
+            <button
+                    (click)="deleteApproval(approval.Id)"
+                    class="text-alpha"
+                    mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

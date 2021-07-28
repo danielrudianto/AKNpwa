@@ -17,3 +17,16 @@
     position:relative;
     display:inline-block;
 }
+
+.user-profile{
+    position:relative;
+    top:0;
+    left:0;
+}
+
+.user-profile-text{
+    position:absolute;
+    top:0;
+    right:0;
+    width:calc(100% - 80px);
+}

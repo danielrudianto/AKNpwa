@@ -1,0 +1,8 @@
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="w-100">
+    <textarea rows="3" style="resize:none" placeholder="Comment" matInput formControlName="comment"></textarea>
+    <button mat-icon-button matSuffix>
+      <mat-icon>send</mat-icon>
+    </button>
+  </mat-form-field>
+</form>

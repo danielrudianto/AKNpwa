@@ -33,15 +33,16 @@ export class ProgressComponent implements OnInit {
   }
 
   openMediaPicker() {
-    const sheet = this.sheet.open(MediaPickerComponent, {
-      disableClose: true
-    });
+    document.getElementById("cameraInput")!.click();
+    //const sheet = this.sheet.open(MediaPickerComponent, {
+    //  disableClose: true
+    //});
 
-    sheet.afterDismissed().subscribe(data => {
-      if (data == "photo") {
-        document.getElementById("cameraInput")!.click();
-      }
-    })
+    //sheet.afterDismissed().subscribe(data => {
+    //  if (data == "photo") {
+    //    document.getElementById("cameraInput")!.click();
+    //  }
+    //})
   }
 
   onFileSelected(event: any) {
@@ -64,10 +65,10 @@ export class ProgressComponent implements OnInit {
       uploadData.append("file[" + index + "]", documentation, documentation.name);
     })
 
-    uploadData.append("progress", this.progress);
-    uploadData.append("projectId", this.cookieService.get("projectId"));
-    uploadData.append("files", this.documentations.length.toString());
-    uploadData.append("createdBy", this.authService.getEmail());
+    uploadData.append("Progress", this.progress);
+    uploadData.append("ProjectId", this.cookieService.get("projectId"));
+    uploadData.append("Files", this.documentations.length.toString());
+    uploadData.append("CreatedBy", this.authService.getEmail());
 
     this.reportService.submitProgressReport(uploadData).subscribe(response => {
       this.route.navigate(["/Project/Feed"]);
