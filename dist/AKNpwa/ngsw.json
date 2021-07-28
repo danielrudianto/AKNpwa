@@ -1,0 +1,117 @@
+{
+  "configVersion": 1,
+  "timestamp": 1627484044452,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main.81b7b15db5648847bf82.js",
+        "/manifest.webmanifest",
+        "/polyfills.6da26518e4bc5a0c8376.js",
+        "/runtime.e87ca152f313da882ccf.js",
+        "/scripts.26e8d69e6673d77e4fb6.js",
+        "/styles.e61643e3e8da3553359b.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/fonts/FrancoisOne.ttf",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/images/Empty.png",
+        "/assets/images/Profile.png",
+        "/assets/images/Project.png",
+        "/assets/images/ProjectVector.png",
+        "/assets/images/Raining.png",
+        "/assets/images/RainingVector.png",
+        "/assets/images/Success.png",
+        "/assets/images/Sunny.png",
+        "/assets/images/SunnyVector.png",
+        "/assets/images/graphic3.svg",
+        "/assets/images/login.svg",
+        "/assets/images/logoAlpha.png",
+        "/assets/images/logoAlphaDark.png",
+        "/assets/images/logoAlphaLight.png",
+        "/logoAlphaDark.dce84093991dccf3263c.png",
+        "/logoAlphaLight.dce84093991dccf3263c.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/fonts/FrancoisOne.ttf": "6438d828d3476456935d5e6500aaf750fabc01ac",
+    "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/assets/images/Empty.png": "07a42c2bb6af10c591344f7213b7e1ec7dc652cd",
+    "/assets/images/Profile.png": "942edbf9cbca159549acbd1f04d7b810b1538475",
+    "/assets/images/Project.png": "50d82b275d702e2c8d5317ca76193731461d5b76",
+    "/assets/images/ProjectVector.png": "20c1352bacadff7e0ad73312df69b071cedc40ea",
+    "/assets/images/Raining.png": "3372d4d849bebedbb8942298401938f18c396afc",
+    "/assets/images/RainingVector.png": "53b28cdf90f3889b30ef853fb872653f456334b6",
+    "/assets/images/Success.png": "693422b05d62e4594a376f39e4201d32c6c34a46",
+    "/assets/images/Sunny.png": "fd677040b96800576840daed8ee1bbb6cf0ff1b7",
+    "/assets/images/SunnyVector.png": "b5d3362af3cfb0456aa778a9cbbb1de11ac96155",
+    "/assets/images/graphic3.svg": "2dc0b8ebc26b1952fab5fadf24e63d0d90770e4b",
+    "/assets/images/login.svg": "0c81a3136e0ad6f7f39652dc911b892fc2f3d27c",
+    "/assets/images/logoAlpha.png": "d8843346a3bb542edb00a5ef7529197d40253992",
+    "/assets/images/logoAlphaDark.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
+    "/assets/images/logoAlphaLight.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
+    "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/index.html": "8abec4e1eefa671203fb001ae8172ed4d0b5aef2",
+    "/logoAlphaDark.dce84093991dccf3263c.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
+    "/logoAlphaLight.dce84093991dccf3263c.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
+    "/main.81b7b15db5648847bf82.js": "e49a6795c373b7bc3ec2ab1279a885e658851298",
+    "/manifest.webmanifest": "54f9cbc9fa7e2ca5c9964f2c405638da6a6cfffe",
+    "/polyfills.6da26518e4bc5a0c8376.js": "6e35743d7c56b6b7e0603edd4697960b4d5481d2",
+    "/runtime.e87ca152f313da882ccf.js": "a8b41dafa0ce41ab53bffeaac6779f09e36a1105",
+    "/scripts.26e8d69e6673d77e4fb6.js": "d47793b6d0c26e8172011c5e65224a55a4a6b847",
+    "/styles.e61643e3e8da3553359b.css": "fccb0ab608c6bc67d44179234b2248151ee7b10b"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
