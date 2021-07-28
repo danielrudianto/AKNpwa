@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -8,14 +8,10 @@ import { Router } from '@angular/router';
 })
 export class ProjectComponent implements OnInit {
   constructor(
-    private route: Router
+    private route: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  getState(outlet: any) {
-    return outlet.activatedRouteData.state;
   }
 
   backToMain() {

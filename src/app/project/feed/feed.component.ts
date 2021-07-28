@@ -42,8 +42,14 @@ export class FeedComponent implements OnInit {
       this.fetchFeeds()
     }, 500)
 
+    this.socketService.socket.on("deleteProject", (data: any) => {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
+
+      }
+    })
+
     this.socketService.socket.on("newToolReport", (data: any) => {
-      if (data.projectId == this.router.snapshot.params.projectId) {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
         this.feedService.getFeed(data.reportId).subscribe(response => {
           this.feeds.unshift(response);
         })
@@ -51,7 +57,7 @@ export class FeedComponent implements OnInit {
     })
 
     this.socketService.socket.on("newMaterialReport", (data: any) => {
-      if (data.projectId == this.router.snapshot.params.projectId) {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
         this.feedService.getFeed(data.reportId).subscribe(response => {
           this.feeds.unshift(response);
         })
@@ -59,7 +65,7 @@ export class FeedComponent implements OnInit {
     })
 
     this.socketService.socket.on("newProgressReport", (data: any) => {
-      if (data.projectId == this.router.snapshot.params.projectId) {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
         this.feedService.getFeed(data.reportId).subscribe(response => {
           this.feeds.unshift(response);
         })
@@ -67,7 +73,7 @@ export class FeedComponent implements OnInit {
     })
 
     this.socketService.socket.on("newWeatherReport", (data: any) => {
-      if (data.projectId == this.router.snapshot.params.projectId) {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
         this.feedService.getFeed(data.reportId).subscribe(response => {
           this.feeds.unshift(response);
         })
@@ -75,7 +81,7 @@ export class FeedComponent implements OnInit {
     })
 
     this.socketService.socket.on("newRFI", (data: any) => {
-      if (data.projectId == this.router.snapshot.params.projectId) {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
         this.feedService.getFeed(data.reportId).subscribe(response => {
           this.feeds.unshift(response);
         })
@@ -83,13 +89,13 @@ export class FeedComponent implements OnInit {
     })
 
     this.socketService.socket.on("deleteProject", (data: any) => {
-      if (data.projectId == this.router.snapshot.params.projectId) {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
         this.route.navigate(["/"]);
       }
     })
 
     this.socketService.socket.on("deleteFeed", (data: any) => {
-      if (data.projectId == this.router.snapshot.params.projectId) {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
         const index = this.feeds.findIndex(x => x.Id == data.reportId);
         this.feeds.splice(index, 1);
       }
@@ -134,7 +140,7 @@ export class FeedComponent implements OnInit {
 
   openMenu() {
     this.bottomSheet.open(FeedMenuComponent, {
-      data: this.router.snapshot.params.projectId
+      data: parseInt(this.cookieService.get("projectId").toString())
     });
   }
 
