@@ -4,12 +4,11 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\image-view",
-    "\\src\\app\\project",
     "\\src\\app\\project\\feed",
     "\\src\\app\\report",
     "\\src\\app\\report\\daily",
     "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\image-view\\image-view.component.ts",
   "PreviewInSolutionExplorer": false
 }

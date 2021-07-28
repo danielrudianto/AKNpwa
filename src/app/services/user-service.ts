@@ -30,4 +30,10 @@ export class UserService {
       }
     })
   }
+
+  resetPassword(password: string) {
+    return this.http.put(global.url + "/user/resetPassword", {
+      password: password
+    });
+  }
 }

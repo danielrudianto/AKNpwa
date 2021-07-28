@@ -46,8 +46,13 @@
                        [value]="user.Email" />
               </mat-form-field>
             </form>
+            <button
+                    (click)="openResetPassword()"
+                    mat-raised-button
+                    class="mb-3">Reset Password</button>
 
             <div class="position-container">
+              <h4 class="fr-text text-alpha">Positions</h4>
               <div class="position"
                    [class.site-engineer]="userPosition.Position === 1"
                    [class.site-manager]="userPosition.Position === 2"

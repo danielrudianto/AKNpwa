@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import * as global from '../global';
@@ -21,7 +23,8 @@ export class ProfileComponent implements OnInit {
     private route: Router,
     private userService: UserService,
     private snackBar: MatSnackBar,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +52,42 @@ export class ProfileComponent implements OnInit {
     this.userService.updateProfilePicture(event.target.files[0]).subscribe(data => {
     }, error => {
       this.snackBar.open(error.message, "Close");
-    });;
+    });
   }
 
+  openResetPassword() {
+    this.dialog.open(ResetPasswordComponent, {
+      minWidth: 400,
+      disableClose: true
+    })
+  }
+}
+
+@Component({
+  templateUrl: 'reset-password.html',
+  selector: 'reset-password'
+})
+export class ResetPasswordComponent {
+  isSubmitting: boolean = false;
+
+  constructor(
+    private userService: UserService,
+    private dialogRef: MatDialogRef<ResetPasswordComponent>
+  ) { }
+
+  resetPasswordForm: FormGroup = new FormGroup({
+    password: new FormControl("", [Validators.required, Validators.minLength(8)]),
+    confirmPassword: new FormControl("", [Validators.required])
+  })
+
+  onSubmit() {
+    if (this.resetPasswordForm.valid && this.resetPasswordForm.controls.password.value == this.resetPasswordForm.controls.confirmPassword.value) {
+      this.isSubmitting = true;
+      this.userService.resetPassword(this.resetPasswordForm.controls.password.value).subscribe(() => {
+        this.dialogRef.close();
+      }, error => {
+          this.isSubmitting = false;
+      })
+    }
+  }
 }

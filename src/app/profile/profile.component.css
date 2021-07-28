@@ -16,6 +16,9 @@ input{
     position:relative;
     left:50%;
     transform:translateX(-50%);
+    background-size:cover;
+    background-position:center;
+    border:1px solid white;
 }
 
 .position-container {

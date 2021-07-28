@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MainComponent } from './main/main.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent, ResetPasswordComponent } from './profile/profile.component';
 import { ProjectComponent } from './project/project.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -102,6 +102,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ReportApprovalSignedPipe,
     ImageViewComponent,
     ImageViewWrapperDirective,
+    ResetPasswordComponent
 
   ],
   imports: [
@@ -153,7 +154,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ToolsMenuComponent,
     ReportApprovalListComponent,
     ReportCommentListComponent,
-    ImageViewComponent
+    ImageViewComponent,
+    ResetPasswordComponent
   ]
 })
 export class AppModule { }

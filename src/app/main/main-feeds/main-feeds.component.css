@@ -4,3 +4,8 @@
     height:50px;
     width:50px;
 }
+
+.feeds-wrapper{
+    height:100%;
+    overflow-y:hidden;
+}

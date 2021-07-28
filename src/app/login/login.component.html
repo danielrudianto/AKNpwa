@@ -21,18 +21,24 @@
           <p>Access to alpha smart report application at the tip of your hand.</p>
           <form (ngSubmit)="login()"
                 [formGroup]="loginForm">
-            <input formControlName="email"
+            <input
+                   [readonly]="isSubmitting"
+                   formControlName="email"
                    class="form-control"
                    type="email" name="name"
                    placeholder="Email"
                    required>
-            <input class="form-control"
+            <input
+                   [readonly]="isSubmitting"
+                   class="form-control"
                    type="password"
                    name="password"
                    formControlName="password"
                    placeholder="Password" required>
             <div class="form-button">
-              <button id="submit"
+              <button
+                      [disabled]="isSubmitting"
+                      id="submit"
                       type="submit"
                       class="ibtn">
                 Login
@@ -49,23 +55,29 @@
           <p>Access to alpha smart report application at the tip of your hand.</p>
           <form (ngSubmit)="register()"
                 [formGroup]="registerForm">
-            <input class="form-control"
+            <input
+                   [readonly]="isSubmitting"
+                   class="form-control"
                    type="email" name="email"
                    placeholder="Email"
                    formControlName="email"
                    required>
-            <input class="form-control"
+            <input
+                   [readonly]="isSubmitting"
+                   class="form-control"
                    type="password"
                    formControlName="password"
                    placeholder="Password"
                    required>
-            <input class="form-control"
+            <input
+                   [readonly]="isSubmitting"
+                   class="form-control"
                    type="password"
                    formControlName="confirmPassword"
                    placeholder="Confirm Password"
                    required>
             <div class="form-button">
-              <button [disabled]="!registerForm.valid || registerForm.controls.password.value != registerForm.controls.confirmPassword.value"
+              <button [disabled]="!registerForm.valid || registerForm.controls.password.value != registerForm.controls.confirmPassword.value || isSubmitting"
                       id="submit"
                       type="submit"
                       class="ibtn">
