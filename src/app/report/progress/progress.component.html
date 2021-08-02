@@ -1,5 +1,5 @@
 <div class="row justify-content-center mb-3 h-100 d-flex">
-  <div class="col-lg-4 col-md-6 col-sm-8 col-12 p-3 h-100">
+  <div class="col-lg-4 col-md-6 col-sm-8 col-12 p-3" id="formWrapper">
     <mat-form-field class="w-100">
       <mat-label>Progress</mat-label>
       <textarea matInput
@@ -8,7 +8,6 @@
                 [(ngModel)]="progress"></textarea>
     </mat-form-field>
     <input type="file"
-           capture="camera"
            accept="image/*"
            id="cameraInput"
            class="d-none"

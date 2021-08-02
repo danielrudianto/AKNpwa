@@ -1,0 +1,9 @@
+.submit-button {
+  border: none;
+  outline: none;
+  background-color: #ED811E;
+  color: white;
+  font-family: "Francois One";
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}

@@ -3,13 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\image-view",
-    "\\src\\app\\project",
-    "\\src\\app\\project\\feed",
+    "\\src\\app\\main\\main-feeds",
     "\\src\\app\\report",
-    "\\src\\app\\report\\daily",
-    "\\src\\app\\services"
+    "\\src\\app\\report\\progress",
+    "\\src\\app\\report\\rfi"
   ],
-  "SelectedNode": "\\src\\app\\services\\user-service.ts",
+  "SelectedNode": "\\src\\app\\report\\rfi\\rfi.component.ts",
   "PreviewInSolutionExplorer": false
 }

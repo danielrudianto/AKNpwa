@@ -52,7 +52,7 @@ export class MaterialComponent implements OnInit {
   }
 
   backToProject() {
-    this.route.navigate(["/Project/Feed/" + this.router.snapshot.params.projectId])
+    this.route.navigate(["/Project/Feed/"])
   }
 
   openAddMaterialForm() {

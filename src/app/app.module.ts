@@ -57,6 +57,7 @@ import { ImageViewComponent } from './image-view/image-view.component';
 import { ImageViewWrapperDirective } from './image-view-wrapper/image-view-wrapper.directive';
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -130,7 +131,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatTabsModule,
     MatCardModule,
     NgImageFullscreenViewModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     {

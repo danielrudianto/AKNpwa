@@ -48,4 +48,11 @@ export class ReportService {
       responseType: 'blob'
     })
   }
+
+  submitRFI(formData: FormData) {
+    return this.http.post(global.url + "/rfi", formData, {
+      reportProgress: true,
+      responseType: 'json'
+    })
+  }
 }

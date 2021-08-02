@@ -1,1 +1,65 @@
-<p>rfi works!</p>
+<div class="row justify-content-center mb-3 h-100 d-flex">
+  <div class="col-lg-4 col-md-6 col-sm-8 col-12 p-3" id="formWrapper">
+    <form [formGroup]="rfiForm">
+      <mat-form-field class="w-100">
+        <mat-label>Subject</mat-label>
+        <input matInput
+                  style="color:white"
+                  rows="15"
+                  formControlName="Header" />
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <mat-label>Addressed For</mat-label>
+        <input matInput
+                  style="color:white"
+                  rows="15"
+                  formControlName="AddressedFor" />
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <mat-label>Description</mat-label>
+        <textarea matInput
+                  style="color:white"
+                  rows="8"
+                  formControlName="Description"></textarea>
+      </mat-form-field>
+    </form>
+    <input type="file"
+           accept="image/*"
+           id="cameraInput"
+           class="d-none"
+           (change)="onFileSelected($event)" />
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="documentations.length > 0">
+        <tr *ngFor="let documentation of documentations">
+          <td>{{ documentation.name }}</td>
+          <td class="text-alpha">
+            <button mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="documentations.length == 0">
+        <tr>
+          <td colspan="2">There is no documentation added.</td>
+        </tr>
+      </tbody>
+    </table>
+    <button mat-raised-button
+            color="accent"
+            (click)="openMediaPicker()">
+      <mat-icon>add_photo_alternate</mat-icon> Add Documentation
+    </button>
+    <button class="w-100 mt-3 submit-button"
+            (click)="submitForm()"
+            [disabled]="isSubmitting || !rfiForm.valid">
+      Submit
+    </button>
+  </div>
+</div>

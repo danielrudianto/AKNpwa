@@ -2,6 +2,14 @@
   background-color: #ddd;
 }
 
+#formWrapper {
+  height: calc(100vh - 64px - 1rem);
+  position: absolute;
+  overflow-y: scroll;
+  width: 100%;
+  display: block;
+}
+
 .app_container {
   height: 90%;
   top: 10%;
