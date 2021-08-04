@@ -1,0 +1,20 @@
+<h5 class="fr-text" mat-dialog-header>Are you sure to delete this data?</h5>
+<mat-dialog-content>
+  <p>Please type in <span class="text-alpha">{{ confirmationText }}</span> to delete this data permanently.</p>
+  <mat-form-field class="w-100">
+    <mat-label>Confirmation</mat-label>
+    <input matInput
+           style="color:white"
+           type="text"
+           maxlength="4"
+           [(ngModel)]="confirmation" />
+  </mat-form-field>
+
+  <button type="button"
+          mat-raised-button
+          color="primary"
+          [disabled]="confirmation != confirmationText || isSubmitting"
+          (click)="submit()">
+    Submit
+  </button>
+</mat-dialog-content>

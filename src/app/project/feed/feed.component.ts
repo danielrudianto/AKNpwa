@@ -9,6 +9,9 @@ import { ApprovalService } from '../../services/approval.service';
 import { ImageViewComponent } from '../../image-view/image-view.component';
 import { ImageViewWrapperDirective } from '../../image-view-wrapper/image-view-wrapper.directive';
 import { Subscription } from 'rxjs';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ReportService } from '../../services/report.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-feed',
@@ -27,7 +30,8 @@ export class FeedComponent implements OnInit {
     private feedService: FeedService,
     private socketService: SocketService,
     private approvalService: ApprovalService,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private dialog: MatDialog
   ) { }
 
   @ViewChild(ImageViewWrapperDirective, { static: false }) imageViewHost: ImageViewWrapperDirective;
@@ -182,6 +186,17 @@ export class FeedComponent implements OnInit {
 
   selector: string = '.feed-container';
 
+  deleteFeed(feed: number) {
+    this.dialog.open(FeedDeleteComponent, {
+      disableClose: false,
+      data: feed
+    })
+  }
+
+  editFeed(feed: any) {
+    this.route.navigate(["/Edit/" + feed.Id])
+  }
+
 }
 
 @Component({
@@ -196,5 +211,32 @@ export class FeedMenuComponent {
 
   closeBottomSheet() {
     this.bottomSheet.dismiss();
+  }
+}
+
+@Component({
+  selector: 'feed-delete',
+  templateUrl: 'feed-delete.html'
+})
+
+export class FeedDeleteComponent {
+  constructor(
+    private dialogRef: MatDialogRef<FeedDeleteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: number,
+    private reportService: ReportService,
+    private snackBar: MatSnackBar
+  ) { }
+  confirmationText: string = Math.floor(Math.random() * 9).toString() + Math.floor(Math.random() * 9).toString() + Math.floor(Math.random() * 9).toString() + Math.floor(Math.random() * 9).toString();
+  confirmation: string = "";
+  isSubmitting: boolean = false;
+
+  submit() {
+    this.isSubmitting = true;
+    this.reportService.deleteReport(this.data).subscribe(data => {
+      this.dialogRef.close({ error: false })
+    }, error => {
+      this.snackBar.open(error.message, "Close");
+      this.isSubmitting = false;
+    })
   }
 }

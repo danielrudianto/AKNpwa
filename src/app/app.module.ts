@@ -21,7 +21,7 @@ import { RfiComponent } from './report/rfi/rfi.component';
 import { WeatherComponent } from './report/weather/weather.component';
 import { AttendanceComponent, AttendanceEditFormComponent, AttendanceFormComponent, AttendanceMenuComponent } from './report/attendance/attendance.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { FeedComponent, FeedMenuComponent } from './project/feed/feed.component';
+import { FeedComponent, FeedDeleteComponent, FeedMenuComponent } from './project/feed/feed.component';
 import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -58,6 +58,13 @@ import { ImageViewWrapperDirective } from './image-view-wrapper/image-view-wrapp
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { EditReportComponent } from './edit-report/edit-report.component';
+import { EditAttendanceComponent } from './edit-report/edit-attendance/edit-attendance.component';
+import { EditMaterialComponent } from './edit-report/edit-material/edit-material.component';
+import { EditProgressComponent } from './edit-report/edit-progress/edit-progress.component';
+import { EditRfiComponent } from './edit-report/edit-rfi/edit-rfi.component';
+import { EditToolComponent } from './edit-report/edit-tool/edit-tool.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -103,7 +110,14 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReportApprovalSignedPipe,
     ImageViewComponent,
     ImageViewWrapperDirective,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    EditReportComponent,
+    EditAttendanceComponent,
+    EditMaterialComponent,
+    EditProgressComponent,
+    EditRfiComponent,
+    EditToolComponent,
+    FeedDeleteComponent
 
   ],
   imports: [
@@ -132,7 +146,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatCardModule,
     NgImageFullscreenViewModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatMenuModule
   ],
   providers: [
     {
@@ -157,7 +172,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReportApprovalListComponent,
     ReportCommentListComponent,
     ImageViewComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    FeedDeleteComponent
   ]
 })
 export class AppModule { }

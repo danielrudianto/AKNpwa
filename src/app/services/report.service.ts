@@ -35,6 +35,10 @@ export class ReportService {
     });
   }
 
+  deleteReport(id: number) {
+    return this.http.delete(global.url + '/reportFeed/' + id);
+  }
+
   fetchTodayWorker(projectId: number) {
     return this.http.get(global.url + "/reportWorker/getToday/" + projectId.toString());
   }

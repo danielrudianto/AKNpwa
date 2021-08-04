@@ -36,26 +36,31 @@ export class ReportApprovalComponent implements OnInit {
   approveReport() {
     this.approvalService.approve(this.reportId, 1).subscribe(data => {
     }, error => {
-      this.snackBar.open(error.message, "Close");
+        this.snackBar.open(error.message, "Close",
+          {
+            duration: 2000
+          });
     })
   }
   disapproveReport() {
     this.approvalService.approve(this.reportId, 2).subscribe(data => {
     }, error => {
-      this.snackBar.open(error.message, "Close");
+        this.snackBar.open(error.message, "Close", {
+          duration: 2000
+        });
     })
   }
 
   openComments() {
     this.dialog.open(ReportCommentListComponent, {
-      data: parseInt(this.cookieService.get("projectId")),
+      data: this.reportId,
       maxHeight: '100%',
     })
   }
 
   openApprovals() {
     this.dialog.open(ReportApprovalListComponent, {
-      data: parseInt(this.cookieService.get("projectId")),
+      data: this.reportId,
       maxHeight: '100%',
     })
   }

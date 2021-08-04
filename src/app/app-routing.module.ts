@@ -17,6 +17,8 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { RfiComponent } from './report/rfi/rfi.component';
 import { ToolsComponent } from './report/tools/tools.component';
 import { SuccessComponent } from './success/success.component';
+import { EditReportComponent } from './edit-report/edit-report.component';
+import { AuthProjectManager } from './services/auth-project-manager.service';
 
 const routes: Routes = [
   {
@@ -107,6 +109,11 @@ const routes: Routes = [
         redirectTo:"/"
       }
     ]
+  },
+  {
+    path: "Edit/:id",
+    component: EditReportComponent,
+    canActivate: [AuthGuardService, AuthProjectManager]
   }
 ];
 
