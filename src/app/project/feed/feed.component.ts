@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ReportService } from '../../services/report.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-feed',
@@ -21,6 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class FeedComponent implements OnInit {
   feeds: any[] = [];
   global: any = global;
+  position: number = 0;
 
   constructor(
     private bottomSheet: MatBottomSheet,
@@ -31,13 +33,16 @@ export class FeedComponent implements OnInit {
     private socketService: SocketService,
     private approvalService: ApprovalService,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService
   ) { }
 
   @ViewChild(ImageViewWrapperDirective, { static: false }) imageViewHost: ImageViewWrapperDirective;
   closeImageView: Subscription;
 
   ngOnInit(): void {
+    this.position = this.authService.getInfo().Position;
+
     if (!this.cookieService.get("projectId")) {
       this.route.navigate(["/"]);
     }

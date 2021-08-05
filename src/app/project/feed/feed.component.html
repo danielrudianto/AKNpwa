@@ -17,7 +17,7 @@
              class="user-thumbnail d-inline-block"></div>
         <button class="option-button"
                 mat-icon-button
-                *ngIf="feed.Type != 4"
+                *ngIf="feed.Type != 4 && position > 2"
                 [matMenuTriggerFor]="menu">
           <mat-icon>more_horiz</mat-icon>
         </button>
@@ -27,11 +27,11 @@
             <mat-icon>delete_sweep</mat-icon>
             <span>Delete feed</span>
           </button>
-          <button (click)="editFeed(feed)"
+          <!--<button (click)="editFeed(feed)"
                   mat-menu-item>
             <mat-icon>edit_attributes</mat-icon>
             <span>Edit feed</span>
-          </button>
+          </button>-->
         </mat-menu>
         <mat-card-title class="fr-text mb-0">{{ feed.User.FirstName }} {{ feed.User.LastName }}</mat-card-title>
         <mat-card-subtitle [ngSwitch]="feed.Type">
@@ -105,10 +105,10 @@
                 <td>{{ material.Quantity | number:'1.0-2' }} {{ material.Unit }}</td>
                 <td>
                   <span *ngIf="material.Status == 1">
-                    Masuk
+                    IN
                   </span>
                   <span *ngIf="material.Status == 0">
-                    Masuk
+                    OUT
                   </span>
                 </td>
               </tr>
