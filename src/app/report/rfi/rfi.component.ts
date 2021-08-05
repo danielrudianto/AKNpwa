@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../../services/auth.service';
 import { ReportService } from '../../services/report.service';
@@ -16,7 +16,7 @@ export class RfiComponent implements OnInit {
   documentations: any[] = [];
 
   constructor(
-    private router: ActivatedRoute,
+    private route: Router,
     private authService: AuthService,
     private reportService: ReportService,
     private snackBar: MatSnackBar,
@@ -58,6 +58,7 @@ export class RfiComponent implements OnInit {
     uploadData.append("CreatedBy", this.authService.getEmail());
 
     this.reportService.submitRFI(uploadData).subscribe(response => {
+      this.route.navigate(["/Project/Feed"]);
     }, error => {
       this.snackBar.open(error.message, "Close");
       this.isSubmitting = false;

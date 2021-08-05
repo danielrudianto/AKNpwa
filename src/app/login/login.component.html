@@ -77,7 +77,7 @@
                    placeholder="Confirm Password"
                    required>
             <div class="form-button">
-              <button [disabled]="!registerForm.valid || registerForm.controls.password.value != registerForm.controls.confirmPassword.value || isSubmitting"
+              <button 
                       id="submit"
                       type="submit"
                       class="ibtn">

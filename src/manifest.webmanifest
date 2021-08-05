@@ -1,7 +1,7 @@
 {
   "name": "Alpha Smart Report Mobile",
   "short_name": "aknsmartreportmobile",
-  "theme_color": "#feaa2d",
+  "theme_color": "#212529",
   "background_color": "#fafafa",
   "display": "standalone",
   "orientation": "portrait",
