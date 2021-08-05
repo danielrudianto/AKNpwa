@@ -53,7 +53,7 @@ export class RfiComponent implements OnInit {
     uploadData.append("AddressedFor", this.rfiForm.controls.AddressedFor.value);
     uploadData.append("Description", this.rfiForm.controls.Description.value);
 
-    uploadData.append("ProjectId", this.router.snapshot.params.projectId);
+    uploadData.append("ProjectId", this.cookieService.get("projectId"));
     uploadData.append("Files", this.documentations.length.toString());
     uploadData.append("CreatedBy", this.authService.getEmail());
 

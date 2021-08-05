@@ -48,7 +48,7 @@ import { MainFeedsComponent } from './main/main-feeds/main-feeds.component';
 import { CookieService } from 'ngx-cookie-service';
 import { SuccessComponent } from './success/success.component';
 import { ReportApprovalComponent, ReportApprovalListComponent, ReportCommentListComponent } from './report-approval/report-approval.component';
-import { RfiAnswerComponent } from './rfi-answer/rfi-answer.component';
+import { RfiAnswerComponent, RfiAnswerListComponent } from './rfi-answer/rfi-answer.component';
 import { ReportCommentComponent } from './report-comment/report-comment.component';
 import { ReportApprovalColorPipe } from './pipes/report-approval-color.pipe';
 import { ReportApprovalCountPipe } from './pipes/report-approval-count.pipe';
@@ -117,7 +117,8 @@ import { MatMenuModule } from '@angular/material/menu';
     EditProgressComponent,
     EditRfiComponent,
     EditToolComponent,
-    FeedDeleteComponent
+    FeedDeleteComponent,
+    RfiAnswerListComponent
 
   ],
   imports: [
@@ -173,7 +174,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ReportCommentListComponent,
     ImageViewComponent,
     ResetPasswordComponent,
-    FeedDeleteComponent
+    FeedDeleteComponent,
+    RfiAnswerListComponent
   ]
 })
 export class AppModule { }

@@ -1,1 +1,33 @@
-<p>rfi-answer works!</p>
+<button (click)="openAnswers()"
+        class="transparent-button">
+  View answers
+</button>
+<div *ngIf="answers.length > 0">
+  <div class="comment-ul" *ngFor="let answer of answers;index as i">
+    <div class="comment-wrapper" *ngIf="i < 2">
+      <div [ngStyle]="{'background-image': answer.User.ImageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + global.url + '/img/' + answer.User.ImageUrl + ')'}"
+           class="comment-thumbnail"></div>
+      <div class="comment-text-wrapper">
+        <p class="fr-text text-alpha mb-0">{{ answer.User.FirstName }} {{ answer.User.LastName }}</p>
+        <p class="comment-timestamp mb-0">{{ answer.CreatedDate | date: 'dd MMM YY HH:mm' }}</p>
+        <p>{{ answer.Answer }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<form [formGroup]="answerForm"
+      (ngSubmit)="onSubmit()">
+  <mat-form-field class="w-100">
+    <textarea [disabled]="isSubmitting"
+              rows="3"
+              style="resize:none"
+              placeholder="Answer"
+              matInput
+              formControlName="Answer"></textarea>
+    <button [disabled]="isSubmitting"
+            mat-icon-button
+            matSuffix>
+      <mat-icon>send</mat-icon>
+    </button>
+  </mat-form-field>
+</form>

@@ -1,0 +1,33 @@
+<h5 class="fr-text text-alpha">Answers</h5>
+<p class="text-white" *ngIf="answers.length == 0">There is no answer found.</p>
+<div class="reportApprovalContainer" *ngIf="answers.length > 0">
+  <div infiniteScroll
+       class="scroll"
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="50"
+       [infiniteScrollContainer]="selector"
+       [fromRoot]="true"
+       (scrolled)="onScroll()">
+    <mat-card *ngFor="let answer of answers" class="mb-2">
+      <div class="comment-wrapper">
+        <div [ngStyle]="{'background-image': answer.User.ImageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + global.url + '/img/' + answer.User.ImageUrl + ')'}"
+             class="user-thumbnail"></div>
+        <div class="user-text">
+          <p class="mb-0 text-alpha">
+            {{ answer.User.FirstName }} {{ answer.User.LastName }}
+          </p>
+          <p class="comment-timestamp">{{ answer.CreatedDate | date: 'dd MMM YY HH: mm' }}</p>
+          <p>{{ answer.Answer }}</p>
+
+          <div class="text-end" *ngIf="position >= 3">
+            <button (click)="deleteAnswer(answer.Id)"
+                    class="text-alpha"
+                    mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

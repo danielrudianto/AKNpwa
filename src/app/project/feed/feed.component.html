@@ -157,6 +157,9 @@
               <p class="fr-text text-center">{{ image.Name }}</p>
             </ng-template>
           </swiper>
+          <app-rfi-answer
+                          [reportId]="feed.Id"
+                          [answers]="feed.RequestForInformation.RequestForInformationAnswer"></app-rfi-answer>
         </div>
         <div *ngSwitchCase="7">
           <p class="fr-text">

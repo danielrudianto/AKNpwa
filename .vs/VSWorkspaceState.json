@@ -7,9 +7,8 @@
     "\\src\\app\\edit-report\\edit-attendance",
     "\\src\\app\\project",
     "\\src\\app\\project\\feed",
-    "\\src\\app\\report-approval",
     "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\report-approval\\report-approval.component.html",
+  "SelectedNode": "\\src\\app\\project\\feed\\feed.component.ts",
   "PreviewInSolutionExplorer": false
 }
