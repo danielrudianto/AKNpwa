@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { FileSaverService } from 'ngx-filesaver';
 import { ReportService } from '../../services/report.service';
 
@@ -16,16 +17,20 @@ export class DailyComponent implements OnInit {
   constructor(
     private reportService: ReportService,
     private _FileSaverService: FileSaverService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {
   }
 
   downloadReport() {
-    this.reportService.downloadDailyReport(this.date.value, this.router.snapshot.params.projectId).subscribe(data => {
-      this._FileSaverService.save((<any>data), "Daily Report.pdf");
-    })
+    if (this.date.value != null) {
+      this.reportService.downloadDailyReport(this.date.value, parseInt(this.cookieService.get("projectId"))).subscribe(data => {
+        this._FileSaverService.save((<any>data), "Daily Report.pdf");
+      })
+    }
+    
   }
 
 }

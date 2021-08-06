@@ -11,10 +11,9 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-
       <button class="submit-button"
               (click)="downloadReport()"
-              [disabled]="isSubmitting || !date.valid">
+              [disabled]="isSubmitting || date.value == null">
         Download
       </button>
     </div>
