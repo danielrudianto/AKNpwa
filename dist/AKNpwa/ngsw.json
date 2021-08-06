@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1628265900355,
+  "timestamp": 1628267899731,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.4c9d7ecd631e1f470efe.js",
+        "/main.7e70fd3e6a428b88c1c8.js",
         "/manifest.webmanifest",
         "/polyfills.6da26518e4bc5a0c8376.js",
         "/runtime.e87ca152f313da882ccf.js",
@@ -87,10 +87,10 @@
     "/assets/images/logoAlphaDark.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
     "/assets/images/logoAlphaLight.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "223ab3296712df20e5e4d91614faae8a4298262c",
+    "/index.html": "c75b33cae7d0d4e9e55e582f9637338c03b654b7",
     "/logoAlphaDark.dce84093991dccf3263c.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
     "/logoAlphaLight.dce84093991dccf3263c.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
-    "/main.4c9d7ecd631e1f470efe.js": "0df3233fa7b08396a39c922e4fb7678faabaaac8",
+    "/main.7e70fd3e6a428b88c1c8.js": "4d8b3b39069e8855e0d363c136d6fd122766f0ae",
     "/manifest.webmanifest": "53dfd656846fe41bee712a37a68f6804d1642834",
     "/polyfills.6da26518e4bc5a0c8376.js": "6e35743d7c56b6b7e0603edd4697960b4d5481d2",
     "/runtime.e87ca152f313da882ccf.js": "a8b41dafa0ce41ab53bffeaac6779f09e36a1105",
