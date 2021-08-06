@@ -26,8 +26,12 @@ export class DailyComponent implements OnInit {
 
   downloadReport() {
     if (this.date.value != null) {
+      this.isSubmitting = true;
       this.reportService.downloadDailyReport(this.date.value, parseInt(this.cookieService.get("projectId"))).subscribe(data => {
+        this.isSubmitting = false;
         this._FileSaverService.save((<any>data), "Daily Report.pdf");
+      }, error => {
+          this.isSubmitting = false;
       })
     }
     

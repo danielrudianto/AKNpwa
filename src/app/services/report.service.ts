@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MaterialReportForm, ToolReportForm, WeatherReportForm, Worker, WorkerReportForm } from '../interfaces/report';
 import * as global from '../global';
@@ -44,12 +44,15 @@ export class ReportService {
   }
 
   downloadDailyReport(date: Date, projectId: number) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
     return this.http.get(global.url + '/reportDaily', {
       params: {
         date: date.toISOString(),
         projectId: projectId
       },
-      responseType: 'blob'
+      responseType: 'blob',
+      headers: headers
     })
   }
 
