@@ -1,1 +1,71 @@
-<p>edit-tool works!</p>
+<div *ngIf="report != null">
+  <div class="step-indicator mb-4">
+    <div class="step-1" [class.active]="step == 1"></div>
+    <div class="bridge"></div>
+    <div class="step-2" [class.active]="step == 2"></div>
+  </div>
+  <div class="attendance_container" *ngIf="step == 1">
+    <div *ngIf="tools.length == 0">
+      <img src="assets/images/Empty.png" class="w-100" />
+      <h3 class="text-center text-white">No tools has been added</h3>
+    </div>
+    <div *ngIf="tools.length > 0">
+      <div class="row w-100 placeholder"
+           *ngFor="let tool of tools"
+           long-press
+           (onLongPress)="onLongPress(tool)">
+        <div class="col-8 text-start">
+          <p class="item-name">{{ tool.Name }}</p>
+          <p class="item-description">{{ tool.Description }}</p>
+        </div>
+        <div class="col-4 text-end">
+          {{ tool.Quantity | number:'1.0-0' }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer mt-4" *ngIf="step == 1">
+    <button class="add-button"
+            style="margin-right:0.5rem"
+            [disabled]="isSubmitting"
+            (click)="openAddToolForm()">
+      Add
+    </button>
+    <button class="submit-button"
+            style="margin-left:0.5rem"
+            [disabled]="tools.length == 0"
+            (click)="next()">
+      Next
+    </button>
+  </div>
+
+
+  <div class="attendance_container" *ngIf="step == 2 && tools.length > 0">
+    <div *ngIf="tools.length > 0">
+      <div class="row w-100 placeholder" *ngFor="let tool of tools">
+        <div class="col-8 text-start">
+          <p class="item-name">{{ tool.Name }}</p>
+          <p class="item-description">{{ tool.Description }}</p>
+        </div>
+        <div class="col-4 text-end">
+          {{ tool.Quantity | number:'1.0-0' }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer mt-4" *ngIf="step == 2">
+    <button class="add-button"
+            style="margin-right:0.5rem"
+            [disabled]="isSubmitting"
+            (click)="prev()">
+      Back
+    </button>
+    <button class="submit-button"
+            style="margin-right:0.5rem"
+            [disabled]="isSubmitting"
+            (click)="addTools()">
+      Submit
+    </button>
+  </div>
+
+</div>

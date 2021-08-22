@@ -1,1 +1,79 @@
-<p>edit-attendance works!</p>
+<div class="step-indicator mb-4">
+  <div class="step-1" [class.active]="step == 1"></div>
+  <div class="bridge"></div>
+  <div class="step-2" [class.active]="step == 2"></div>
+</div>
+<div *ngIf="workers.length == 0 && attendingWorkers.length == 0">
+  <img src="assets/images/Empty.png" class="w-100" />
+  <h4 class="text-center text-white mb-3">Workers has not been added.</h4>
+</div>
+<div class="attendance_container" *ngIf="step == 1 && (attendingWorkers.length > 0 || workers.length > 0)">
+  <div *ngIf="attendingWorkers.length > 0">
+    <div class="w-100 read-placeholder" *ngFor="let attendingWorker of attendingWorkers">
+      <div class="row" *ngFor="let worker of attendingWorker.Worker">
+        <div class="col-8 text-start">
+          {{ worker.Name }}
+          <p class="mb-0">{{ attendingWorker.Date | date: 'shortTime' }}</p>
+        </div>
+        <div class="col-4 text-end">
+          {{ worker.Quantity | number:'1.0-0' }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="workers.length > 0">
+    <div class="row w-100 placeholder"
+         *ngFor="let worker of workers"
+         long-press
+         (onLongPress)="onLongPress(worker)">
+      <div class="col-8 text-start">
+        {{ worker.Name }}
+      </div>
+      <div class="col-4 text-end">
+        {{ worker.Quantity | number:'1.0-0' }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="box-footer mt-4" *ngIf="step == 1">
+  <button class="add-button"
+          style="margin-right:0.5rem"
+          [disabled]="isSubmitting"
+          (click)="openAddAttendanceForm()">
+    Add
+  </button>
+  <button class="submit-button"
+          style="margin-left:0.5rem"
+          [disabled]="workers.length == 0"
+          (click)="next()">
+    Next
+  </button>
+</div>
+
+
+<div class="attendance_container" *ngIf="step == 2 && workers.length > 0">
+  <div *ngIf="workers.length > 0">
+    <div class="row w-100 placeholder" *ngFor="let worker of workers">
+      <div class="col-8 text-start">
+        {{ worker.Name }}
+      </div>
+      <div class="col-4 text-end">
+        {{ worker.Quantity | number:'1.0-0' }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="box-footer mt-4" *ngIf="step == 2">
+  <button class="add-button"
+          style="margin-right:0.5rem"
+          [disabled]="isSubmitting"
+          (click)="prev()">
+    Back
+  </button>
+  <button class="submit-button"
+          style="margin-right:0.5rem"
+          [disabled]="isSubmitting"
+          (click)="addAttendance()">
+    Submit
+  </button>
+</div>

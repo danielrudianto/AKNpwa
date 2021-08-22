@@ -29,7 +29,9 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/firebase-messaging-sw.js", // add this one
+              "src/manifest.json" // this one also 
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -106,7 +108,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest",
-              "src/manifest.webmanifest"
+              "src/firebase-messaging-sw.js", // add this one
+              "src/manifest.json" // this one also 
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",

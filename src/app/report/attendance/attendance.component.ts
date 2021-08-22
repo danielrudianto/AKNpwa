@@ -23,7 +23,6 @@ export class AttendanceComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private reportService: ReportService,
-    private router: ActivatedRoute,
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private route: Router,

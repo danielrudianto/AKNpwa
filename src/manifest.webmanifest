@@ -3,7 +3,7 @@
   "short_name": "aknsmartreportmobile",
   "theme_color": "#212529",
   "background_color": "#fafafa",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "portrait",
   "scope": "./",
   "start_url": "./",

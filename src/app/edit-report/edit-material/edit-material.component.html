@@ -1,1 +1,109 @@
-<p>edit-material works!</p>
+<div *ngIf="report != null">
+  <div class="step-indicator mb-4">
+    <div class="step-1" [class.active]="step == 1"></div>
+    <div class="bridge-1"></div>
+    <div class="step-2" [class.active]="step == 2"></div>
+    <div class="bridge-2"></div>
+    <div class="step-3" [class.active]="step == 3"></div>
+  </div>
+  <div class="attendance_container" *ngIf="step == 1">
+    <div *ngIf="materials.length == 0">
+      <img src="assets/images/Empty.png" class="w-100" />
+      <h3 class="text-center text-white">No materials has been added</h3>
+    </div>
+    <div *ngIf="materials.length > 0">
+      <div class="row w-100 placeholder"
+           *ngFor="let material of materials"
+           long-press
+           (onLongPress)="onLongPress(material)">
+        <div class="col-6 text-start">
+          <p class="item-name">{{ material.Name }}</p>
+          <p class="item-description">{{ material.Description }}</p>
+          <mat-slide-toggle [checked]="material.Status == 1 ? true : false"
+                            (change)="material.Status == 1 ? material.Status = 0 : material.Status = 1">
+            <span *ngIf="material.Status == 0">OUT</span>
+            <span *ngIf="material.Status == 1">IN</span>
+          </mat-slide-toggle>
+        </div>
+        <div class="col-6 text-end">
+          {{ material.Quantity | number:'1.0-0' }} {{ material.Unit }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer mt-4" *ngIf="step == 1">
+    <button class="add-button"
+            style="margin-right:0.5rem"
+            [disabled]="isSubmitting"
+            (click)="openAddMaterialForm()">
+      Add
+    </button>
+    <button class="submit-button"
+            style="margin-left:0.5rem"
+            [disabled]="materials.length == 0"
+            (click)="next()">
+      Next
+    </button>
+  </div>
+
+  <div class="attendance_container" *ngIf="step == 2">
+    <div class="row">
+      <mat-form-field class="w-100">
+        <mat-label>Note</mat-label>
+        <textarea [formControl]="note"
+                  style="color:white"
+                  matInput></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="box-footer mt-4" *ngIf="step == 2">
+    <button class="add-button"
+            style="margin-right:0.5rem"
+            [disabled]="isSubmitting"
+            (click)="prev()">
+      Back
+    </button>
+    <button class="submit-button"
+            style="margin-left:0.5rem"
+            [disabled]="materials.length == 0"
+            (click)="next()">
+      Next
+    </button>
+  </div>
+
+
+  <div class="attendance_container" *ngIf="step == 3 && materials.length > 0">
+    <div *ngIf="materials.length > 0">
+      <div class="row w-100 placeholder" *ngFor="let material of materials">
+        <div class="col-6 text-start">
+          <p class="item-name">{{ material.Name }}</p>
+          <p class="item-description">{{ material.Description }}</p>
+          <p class="item-name">
+            <span *ngIf="material.Status == 1">IN</span>
+            <span *ngIf="material.Status == 0">OUT</span>
+          </p>
+        </div>
+        <div class="col-6 text-end">
+          {{ material.Quantity | number:'1.0-0' }} {{ material.Unit }}
+        </div>
+      </div>
+    </div>
+    <label class="label text-white">Note</label>
+    <p class="text-white" *ngIf="note.value != ''">{{ note.value }}</p>
+    <p class="text-white" *ngIf="note.value == ''"><i>Not available</i></p>
+  </div>
+  <div class="box-footer mt-4" *ngIf="step == 3">
+    <button class="add-button"
+            style="margin-right:0.5rem"
+            [disabled]="isSubmitting"
+            (click)="prev()">
+      Back
+    </button>
+    <button class="submit-button"
+            style="margin-right:0.5rem"
+            [disabled]="isSubmitting"
+            (click)="addMaterial()">
+      Submit
+    </button>
+  </div>
+</div>

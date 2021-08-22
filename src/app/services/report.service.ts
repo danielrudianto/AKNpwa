@@ -62,4 +62,23 @@ export class ReportService {
       responseType: 'json'
     })
   }
+
+  editWorkerReport(workerReport: WorkerReportForm) {
+    return this.http.put(global.url + "/reportWorker", workerReport)
+  }
+
+  editToolReport(toolReport: ToolReportForm) {
+    return this.http.put(global.url + "/reportTool", toolReport);
+  }
+
+  editMaterialReport(materialReport: MaterialReportForm) {
+    return this.http.put(global.url + "/reportMaterial", materialReport);
+  }
+
+  editRFI(formData: FormData) {
+    return this.http.put(global.url + "/rfi", formData, {
+      reportProgress: true,
+      responseType: 'json'
+    })
+  }
 }

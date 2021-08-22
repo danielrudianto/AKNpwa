@@ -1,8 +1,12 @@
 <div class="row py-3">
   <div class="col-12 position-relative">
-    <div [ngStyle]="{'background-image': imageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + imageUrl + ')'}"
+    <div
+         (click)="goToProfile()"
+         [ngStyle]="{'background-image': imageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + imageUrl + ')'}"
          class="user-profile"></div>
-    <div class="user-profile-text">
+    <div
+         (click)="goToProfile()"
+         class="user-profile-text">
       <h4 class="text-white fr-text mb-0">{{ name }}</h4>
       <div class="text-alpha fr-text position-text" [ngSwitch]="position">
         <p *ngSwitchCase="1">Site Engineer</p>
@@ -11,5 +15,10 @@
         <p *ngSwitchCase="4">Director</p>
       </div>
     </div>
+    <button
+            style="color:white;float:right"
+            mat-icon-button>
+      <mat-icon>notification_important</mat-icon>
+    </button>
   </div>
 </div>

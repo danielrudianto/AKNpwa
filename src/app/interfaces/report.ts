@@ -55,6 +55,7 @@ export interface MaterialReportForm {
   CreatedBy: string;
   CodeProjectId: number;
   Materials: Material[];
+  Note: string;
 }
 
 export interface Material {

@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SwPush, SwUpdate } from '@angular/service-worker';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { AuthService } from './services/auth.service';
+import { MessagingService } from './services/messaging.service';
 import { SocketService } from './services/socket.service';
 
 @Component({
@@ -10,35 +12,24 @@ import { SocketService } from './services/socket.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  onlineEvent: Observable<Event>;
-  offlineEvent: Observable<Event>;
-  connectionStatus: string;
-  subscriptions: Subscription[] = [];
-
   title = 'AKNpwa';
+
+  readonly VAPID_PUBLIC_KEY = "BJrlO_159Y_KE27pOmznwP2XUVulK-CQ8cQtqJB3kWYTnKu8epkSUftlWiETA3y-1Tx2_m1W3uP4KpTRA6uCqgg";
 
   constructor(
     private socketService: SocketService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private swPush: SwPush,
+    private swUpdate: SwUpdate,
+    private messagingService: MessagingService
+  ) { }
 
   ngOnInit(): void {
-    this.onlineEvent = fromEvent(window, 'online');
-    this.offlineEvent = fromEvent(window, 'offline');
-
     this.authService.getUpdatedToken().subscribe((data: any) => {
       this.authService.updateToken(data.token);
     }, error => {
       this.authService.logout();
     })
-
-    this.subscriptions.push(this.onlineEvent.subscribe(e => {
-      this.connectionStatus = 'online';
-    }));
-
-    this.subscriptions.push(this.offlineEvent.subscribe(e => {
-      this.connectionStatus = 'offline';
-    }));
 
     this.socketService.setupSocketConnection();
 
@@ -62,10 +53,19 @@ export class AppComponent implements OnInit, OnDestroy {
         this.authService.logout();
       }
     })
+
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(() => {
+        if (confirm('New version available!')) {
+          window.location.reload();
+        }
+      })
+    }
+
+    this.messagingService.receiveMessage();
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   getState(outlet: any) {

@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\project",
-    "\\src\\app\\project\\feed",
+    "\\src\\app\\edit-report",
+    "\\src\\app\\image-view-wrapper",
+    "\\src\\app\\interfaces",
+    "\\src\\app\\pipes",
     "\\src\\app\\report",
     "\\src\\app\\report\\daily",
-    "\\src\\app\\services",
-    "\\src\\assets",
-    "\\src\\assets\\icons"
+    "\\src\\app\\report\\progress"
   ],
-  "SelectedNode": "\\src\\app\\report\\daily\\daily.component.ts",
+  "SelectedNode": "\\src\\app\\image-view\\image-view.component.ts",
   "PreviewInSolutionExplorer": false
 }

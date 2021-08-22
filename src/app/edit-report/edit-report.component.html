@@ -1,1 +1,18 @@
-<p>edit-report works!</p>
+<ng-template imageView></ng-template>
+<div class="navigation">
+  <button mat-button
+          (click)="backToProject()">
+    <mat-icon style="color:white">keyboard_arrow_left</mat-icon>
+    <h6 class="fr-text text-white d-inline-block mb-0 ms-1">Feeds</h6>
+  </button>
+</div>
+<div class="container" *ngIf="report != null">
+  <app-edit-attendance [report]="report"
+                       *ngIf="report.Type == 1"></app-edit-attendance>
+  <app-edit-tool [report]="report"
+                 *ngIf="report.Type == 2"></app-edit-tool>
+  <app-edit-material [report]="report"
+                 *ngIf="report.Type == 3"></app-edit-material>
+  <app-edit-rfi [report]="report"
+                *ngIf="report.Type == 5"></app-edit-rfi>
+</div>

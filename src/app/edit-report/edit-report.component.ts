@@ -10,6 +10,8 @@ import { ReportService } from '../services/report.service';
   styleUrls: ['./edit-report.component.css']
 })
 export class EditReportComponent implements OnInit {
+  report: any = null;
+
   constructor(
     private route: ActivatedRoute,
     private feedService: FeedService,
@@ -20,8 +22,15 @@ export class EditReportComponent implements OnInit {
     this.feedService.getFeed(this.route.snapshot.params.id).subscribe(data => {
       if (data == null) {
         this.router.navigate(['/']);
+      } else {
+        this.report = data;
+        console.log(data);
       }
     })
+  }
+
+  backToProject() {
+    this.router.navigate(["/Project/Feed"]);
   }
 
 }

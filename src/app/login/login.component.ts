@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { MessagingService } from '../services/messaging.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private messagingService: MessagingService
   ) { }
 
   login() {
@@ -38,7 +40,10 @@ export class LoginComponent implements OnInit {
       this.router.navigate(["/"])
     }, error => {
         this.isSubmitting = false;
-      this.snackBar.open(error.message, "Close");
+        this.snackBar.open(error.message, "Close", {
+          duration: 2000,
+          panelClass:['text-white']
+        });
     })
   }
 
@@ -49,11 +54,15 @@ export class LoginComponent implements OnInit {
       this.router.navigate(["/"])
     }, error => {
         this.isSubmitting = false;
-      this.snackBar.open(error.message, "Close")
+        this.snackBar.open(error.message, "Close", {
+          duration: 2000,
+          panelClass: ['text-white']
+        })
     });
   }
 
   ngOnInit(): void {
+    this.messagingService.deleteToken();
   }
 
   goToLogin() {

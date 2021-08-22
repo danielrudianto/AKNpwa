@@ -19,6 +19,7 @@ import { ToolsComponent } from './report/tools/tools.component';
 import { SuccessComponent } from './success/success.component';
 import { EditReportComponent } from './edit-report/edit-report.component';
 import { AuthProjectManager } from './services/auth-project-manager.service';
+import { FeedDetailComponent } from './feed-detail/feed-detail.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,11 @@ const routes: Routes = [
       {
         path: "Feed",
         component: FeedComponent,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: "Feed/Detail/:feedId",
+        component: FeedDetailComponent,
         canActivate: [AuthGuardService]
       },
       {

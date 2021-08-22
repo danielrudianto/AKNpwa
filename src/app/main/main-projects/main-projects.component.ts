@@ -48,8 +48,8 @@ export class MainProjectsComponent implements OnInit {
   }
 
   breakpoints = {
-    300: { slidesPerView: 1, spaceBetween: 10 },
-    640: { slidesPerView: 2, spaceBetween: 20 },
+    300: { slidesPerView: 1.2, spaceBetween: 10 },
+    640: { slidesPerView: 2.3, spaceBetween: 20 },
   };
 
 }

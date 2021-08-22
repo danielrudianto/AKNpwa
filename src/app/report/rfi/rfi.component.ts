@@ -20,7 +20,7 @@ export class RfiComponent implements OnInit {
     private authService: AuthService,
     private reportService: ReportService,
     private snackBar: MatSnackBar,
-    private cookieService: CookieService
+    private cookieService: CookieService,
   ) { }
 
   rfiForm: FormGroup = new FormGroup({

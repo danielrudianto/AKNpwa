@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { ReportComponent } from './report/report.component';
 import { MaterialComponent, MaterialEditFormComponent, MaterialFormComponent, MaterialMenuComponent } from './report/material/material.component';
-import { ToolFormComponent, ToolsComponent, ToolsMenuComponent } from './report/tools/tools.component';
+import { ToolFormComponent, ToolsComponent, ToolsEditFormComponent, ToolsMenuComponent } from './report/tools/tools.component';
 import { RfiComponent } from './report/rfi/rfi.component';
 import { WeatherComponent } from './report/weather/weather.component';
 import { AttendanceComponent, AttendanceEditFormComponent, AttendanceFormComponent, AttendanceMenuComponent } from './report/attendance/attendance.component';
@@ -65,7 +65,11 @@ import { EditProgressComponent } from './edit-report/edit-progress/edit-progress
 import { EditRfiComponent } from './edit-report/edit-rfi/edit-rfi.component';
 import { EditToolComponent } from './edit-report/edit-tool/edit-tool.component';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { FeedDetailComponent } from './feed-detail/feed-detail.component';
+import { MessagingService } from './services/messaging.service';
+import { AngularFireMessaging, AngularFireMessagingModule, SERVICE_WORKER } from '@angular/fire/messaging';
+import { AngularFireModule } from '@angular/fire';
+import { DotPipe } from './pipes/dot.pipe';
 
 @NgModule({
   declarations: [
@@ -108,6 +112,7 @@ import { MatMenuModule } from '@angular/material/menu';
     ReportApprovalColorPipe,
     ReportApprovalCountPipe,
     ReportApprovalSignedPipe,
+    DotPipe,
     ImageViewComponent,
     ImageViewWrapperDirective,
     ResetPasswordComponent,
@@ -118,8 +123,9 @@ import { MatMenuModule } from '@angular/material/menu';
     EditRfiComponent,
     EditToolComponent,
     FeedDeleteComponent,
-    RfiAnswerListComponent
-
+    RfiAnswerListComponent,
+    FeedDetailComponent,
+    ToolsEditFormComponent
   ],
   imports: [
     BrowserModule,
@@ -127,6 +133,15 @@ import { MatMenuModule } from '@angular/material/menu';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
+    }),
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyCj8y6IEtVHjBWSS-T9vNdTp4Xvh6F6ynk",
+      authDomain: "alphakonstruksi-fba6d.firebaseapp.com",
+      projectId: "alphakonstruksi-fba6d",
+      storageBucket: "alphakonstruksi-fba6d.appspot.com",
+      messagingSenderId: "1065660266678",
+      appId: "1:1065660266678:web:a7635cb06da5ef8d2f0e17",
+      measurementId: "G-5HCWS4Y82L"
     }),
     BrowserAnimationsModule,
     HttpClientModule,
@@ -148,7 +163,9 @@ import { MatMenuModule } from '@angular/material/menu';
     NgImageFullscreenViewModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMenuModule
+    MatMenuModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
     {
@@ -156,7 +173,8 @@ import { MatMenuModule } from '@angular/material/menu';
       useClass: AuthInterceptorService,
       multi: true
     },
-    CookieService
+    CookieService,
+    MessagingService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -170,6 +188,7 @@ import { MatMenuModule } from '@angular/material/menu';
     AttendanceEditFormComponent,
     AttendanceMenuComponent,
     ToolsMenuComponent,
+    ToolsEditFormComponent,
     ReportApprovalListComponent,
     ReportCommentListComponent,
     ImageViewComponent,

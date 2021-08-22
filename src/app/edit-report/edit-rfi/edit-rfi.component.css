@@ -1,0 +1,18 @@
+#formWrapper {
+  height: calc(100vh - 64px - 1rem);
+  position: absolute;
+  overflow-y: scroll;
+  width: 100%;
+  display: block;
+  overflow-x:hidden;
+}
+
+.submit-button {
+  border: none;
+  outline: none;
+  background-color: #ED811E;
+  color: white;
+  font-family: "Francois One";
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}

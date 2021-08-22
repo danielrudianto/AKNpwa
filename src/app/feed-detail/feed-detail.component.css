@@ -1,0 +1,42 @@
+.feed-container {
+  padding: 1rem;
+  height: calc(100% - 4.5rem);
+  position: fixed;
+  top: 4.5rem;
+  width: 100%;
+  left: 0;
+  overflow-y: scroll;
+}
+
+.user-thumbnail {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.feed-date {
+  font-size: 12px;
+}
+
+.documentation-wrapper {
+  aspect-ratio: 2;
+  background-position: center;
+  background-size: cover;
+}
+
+#feedWrapper {
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+#feed {
+  position: relative;
+  width: 100%;
+  overflow-y: scroll;
+}

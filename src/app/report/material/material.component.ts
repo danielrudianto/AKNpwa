@@ -19,6 +19,8 @@ export class MaterialComponent implements OnInit {
   isSubmitting: boolean = false;
   step: number = 1;
 
+  note: FormControl = new FormControl("");
+
   constructor(
     private dialog: MatDialog,
     private route: Router,
@@ -38,7 +40,8 @@ export class MaterialComponent implements OnInit {
     this.reportService.submitMaterialReport({
       CodeProjectId: parseInt(this.cookieService.get("projectId")),
       CreatedBy: this.authService.getEmail(),
-      Materials:this.materials
+      Materials: this.materials,
+      Note: this.note.value.toString()
     }).subscribe(responseData => {
       this.isSubmitting = false;
       this.backToProject();

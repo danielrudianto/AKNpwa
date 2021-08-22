@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CodeProject, Project } from '../interfaces/project';
 import { AuthService } from '../services/auth.service';
-import { ProjectService } from '../services/project.service';
+import { MessagingService } from '../services/messaging.service';
+import { AppUpdateService } from '../services/update.service';
 
 @Component({
   selector: 'app-main',
@@ -11,10 +11,15 @@ import { ProjectService } from '../services/project.service';
 })
 export class MainComponent implements OnInit {
   constructor(
-    private router: Router
-  ) { }
+    private router: Router,
+    private update: AppUpdateService,
+    private authService: AuthService,
+    private messagingService: MessagingService
+  ) {
+  }
 
   ngOnInit(): void {
+    this.messagingService.requestPermission()
   }
 
   goToProfile() {

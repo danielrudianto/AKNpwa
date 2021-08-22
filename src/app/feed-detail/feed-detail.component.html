@@ -1,0 +1,181 @@
+<ng-template imageView></ng-template>
+<div class="feed-container">
+  <div class="row">
+    <div class="col-12">
+      <mat-card class="position-relative" *ngIf="feed != null">
+        <mat-card-header>
+          <div mat-card-avatar
+               *ngIf="feed.User != null"
+               [ngStyle]="{'background-image': feed.User.ImageUrl == null ? 'url(../assets/images/Profile.png)' : 'url(' + global.url + '/img/' + feed.User.ImageUrl + ')'}"
+               class="user-thumbnail d-inline-block"></div>
+          <button class="option-button"
+                  mat-icon-button
+                  *ngIf="feed.Type != 4 && position > 2"
+                  [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button (click)="deleteFeed(feed.Id)"
+                    mat-menu-item>
+              <mat-icon>delete_sweep</mat-icon>
+              <span>Delete feed</span>
+            </button>
+            <!--<button (click)="editFeed(feed)"
+                  mat-menu-item>
+            <mat-icon>edit_attributes</mat-icon>
+            <span>Edit feed</span>
+          </button>-->
+          </mat-menu>
+          <mat-card-title class="fr-text mb-0">{{ feed.User.FirstName }} {{ feed.User.LastName }}</mat-card-title>
+          <mat-card-subtitle [ngSwitch]="feed.Type">
+            <span class="mb-0" *ngSwitchCase="1">Attendance Report</span>
+            <span class="mb-0" *ngSwitchCase="2">Tool Report</span>
+            <span class="mb-0" *ngSwitchCase="3">Material Report</span>
+            <span class="mb-0" *ngSwitchCase="4">Weather Report</span>
+            <span class="mb-0" *ngSwitchCase="5">Request For Information</span>
+            <span class="mb-0" *ngSwitchCase="7">Progress Report</span>
+
+            <span class="feed-date d-block">{{ feed.CreatedDate | date:'dd MMM YYYY HH:mm' }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content [ngSwitch]="feed.Type">
+          <div *ngSwitchCase="1">
+            <table class="table table-light">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let worker of feed.Worker">
+                  <td>{{ worker.Name }}</td>
+                  <td>{{ worker.Quantity | number:'1.0-0' }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <app-report-approval [reportId]="feed.Id"
+                                 [comments]="feed.CodeReportApprovalComment"
+                                 [approvals]="feed.CodeReportApproval"></app-report-approval>
+            <app-report-comment [reportId]="feed.Id"></app-report-comment>
+          </div>
+          <div *ngSwitchCase="2">
+            <table class="table table-light">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let tool of feed.Tool">
+                  <td>{{ tool.Name }}</td>
+                  <td>{{ tool.Description }}</td>
+                  <td>{{ tool.Quantity | number:'1.0-0' }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <app-report-approval [reportId]="feed.Id"
+                                 [comments]="feed.CodeReportApprovalComment"
+                                 [approvals]="feed.CodeReportApproval"></app-report-approval>
+            <app-report-comment [reportId]="feed.Id"></app-report-comment>
+          </div>
+          <div *ngSwitchCase="3">
+            <table class="table table-light">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let material of feed.Material">
+                  <td>{{ material.Name }}</td>
+                  <td>{{ material.Description }}</td>
+                  <td>{{ material.Quantity | number:'1.0-2' }} {{ material.Unit }}</td>
+                  <td>
+                    <span *ngIf="material.Status == 1">
+                      IN
+                    </span>
+                    <span *ngIf="material.Status == 0">
+                      OUT
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <app-report-approval [reportId]="feed.Id"
+                                 [comments]="feed.CodeReportApprovalComment"
+                                 [approvals]="feed.CodeReportApproval"></app-report-approval>
+            <app-report-comment [reportId]="feed.Id"></app-report-comment>
+          </div>
+          <div *ngSwitchCase="4">
+            <p class="fr-text">
+              Reported
+              <span class="text-alpha" *ngIf="feed.Weather.WeatherId == 0">sunny</span>
+              <span class="text-alpha" *ngIf="feed.Weather.WeatherId == 1">raining</span>
+            </p>
+          </div>
+          <div *ngSwitchCase="5">
+            <mat-form-field class="w-100">
+              <mat-label>Addressed for</mat-label>
+              <input readonly
+                     matInput
+                     [(ngModel)]="feed.RequestForInformation.AddressedFor" />
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label>Header</mat-label>
+              <input readonly
+                     matInput
+                     [(ngModel)]="feed.RequestForInformation.Header" />
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label>Description</mat-label>
+              <textarea readonly
+                        matInput
+                        [(ngModel)]="feed.RequestForInformation.Description"></textarea>
+            </mat-form-field>
+            <swiper *ngIf="feed.RequestForInformation.RequestForInformationDocument.length > 0"
+                    [navigation]="true"
+                    [slidesPerView]="1"
+                    [spaceBetween]="50">
+              <ng-template swiperSlide
+                           *ngFor="let image of feed.RequestForInformation.RequestForInformationDocument">
+                <div [ngStyle]="{'background-image': 'url(' + global.url + '/img/' + image.ImageUrl + ')'}"
+                     (click)="viewImage(image)"
+                     class="documentation-wrapper"></div>
+                <p class="fr-text text-center">{{ image.Name }}</p>
+              </ng-template>
+            </swiper>
+            <app-rfi-answer [reportId]="feed.Id"
+                            [answers]="feed.RequestForInformation.RequestForInformationAnswer"></app-rfi-answer>
+          </div>
+          <div *ngSwitchCase="7">
+            <p class="fr-text">
+              {{ feed.StatusReport.Status }}
+            </p>
+            <swiper [navigation]="true"
+                    [slidesPerView]="1"
+                    [spaceBetween]="50">
+              <ng-template swiperSlide
+                           *ngFor="let image of feed.StatusReport.StatusReportImage">
+                <div [ngStyle]="{'background-image': 'url(' + global.url + '/img/' + image.ImageUrl + ')'}"
+                     (click)="viewImage(image)"
+                     class="documentation-wrapper"></div>
+                <p class="fr-text text-center">{{ image.Name }}</p>
+              </ng-template>
+            </swiper>
+            <app-report-approval [reportId]="feed.Id"
+                                 [comments]="feed.CodeReportApprovalComment"
+                                 [approvals]="feed.CodeReportApproval"></app-report-approval>
+            <app-report-comment [reportId]="feed.Id"></app-report-comment>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+

@@ -26,7 +26,6 @@ export class FeedComponent implements OnInit {
 
   constructor(
     private bottomSheet: MatBottomSheet,
-    private router: ActivatedRoute,
     private route: Router,
     private cookieService: CookieService,
     private feedService: FeedService,
@@ -53,7 +52,7 @@ export class FeedComponent implements OnInit {
 
     this.socketService.socket.on("deleteProject", (data: any) => {
       if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
-
+        this.route.navigate(["/"]);
       }
     })
 
@@ -151,6 +150,10 @@ export class FeedComponent implements OnInit {
     this.bottomSheet.open(FeedMenuComponent, {
       data: parseInt(this.cookieService.get("projectId").toString())
     });
+  }
+
+  viewReportDetail(feedId: number) {
+    this.route.navigate(["/Project/Feed/Detail/" + feedId])
   }
 
   fetchFeeds() {

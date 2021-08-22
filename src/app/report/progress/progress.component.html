@@ -21,7 +21,7 @@
       </thead>
       <tbody *ngIf="documentations.length > 0">
         <tr *ngFor="let documentation of documentations">
-          <td>{{ documentation.name }}</td>
+          <td>{{ documentation.name | dot: 10 }}</td>
           <td class="text-alpha">
             <button mat-icon-button>
               <mat-icon>delete</mat-icon>
