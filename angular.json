@@ -29,7 +29,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest",
-              "src/manifest.webmanifest",
+              "src/custom-service-worker.js",
               "src/firebase-messaging-sw.js", // add this one
               "src/manifest.json" // this one also 
             ],
@@ -108,6 +108,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest",
+              "src/custom-service-worker.js",
               "src/firebase-messaging-sw.js", // add this one
               "src/manifest.json" // this one also 
             ],

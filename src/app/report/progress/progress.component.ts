@@ -34,15 +34,6 @@ export class ProgressComponent implements OnInit {
 
   openMediaPicker() {
     document.getElementById("cameraInput")!.click();
-    //const sheet = this.sheet.open(MediaPickerComponent, {
-    //  disableClose: true
-    //});
-
-    //sheet.afterDismissed().subscribe(data => {
-    //  if (data == "photo") {
-    //    document.getElementById("cameraInput")!.click();
-    //  }
-    //})
   }
 
   onFileSelected(event: any) {

@@ -130,7 +130,7 @@ import { DotPipe } from './pipes/dot.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ServiceWorkerModule.register('custom-ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
     }),

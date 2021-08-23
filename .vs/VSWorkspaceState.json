@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\edit-report",
-    "\\src\\app\\image-view-wrapper",
-    "\\src\\app\\interfaces",
-    "\\src\\app\\pipes",
+    "\\src\\app\\edit-report\\edit-rfi",
+    "\\src\\app\\login",
+    "\\src\\app\\main",
     "\\src\\app\\report",
-    "\\src\\app\\report\\daily",
-    "\\src\\app\\report\\progress"
+    "\\src\\app\\report\\progress",
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\image-view\\image-view.component.ts",
+  "SelectedNode": "\\tsconfig.spec.json",
   "PreviewInSolutionExplorer": false
 }

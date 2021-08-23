@@ -5,6 +5,8 @@ import { fromEvent, Observable, Subscription } from 'rxjs';
 import { AuthService } from './services/auth.service';
 import { MessagingService } from './services/messaging.service';
 import { SocketService } from './services/socket.service';
+import * as firebase from 'firebase/app';
+import 'firebase/messaging';
 
 @Component({
   selector: 'app-root',
@@ -60,6 +62,10 @@ export class AppComponent implements OnInit, OnDestroy {
           window.location.reload();
         }
       })
+
+      this.swPush.messages.subscribe(msg => console.log('push message', msg));
+      this.swPush.notificationClicks.subscribe(click => console.log('notification click', click));
+      navigator.serviceWorker.getRegistration().then(swr => firebase.default.messaging().useServiceWorker(swr!));
     }
 
     this.messagingService.receiveMessage();

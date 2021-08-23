@@ -12,7 +12,9 @@
   <app-edit-tool [report]="report"
                  *ngIf="report.Type == 2"></app-edit-tool>
   <app-edit-material [report]="report"
-                 *ngIf="report.Type == 3"></app-edit-material>
+                     *ngIf="report.Type == 3"></app-edit-material>
   <app-edit-rfi [report]="report"
                 *ngIf="report.Type == 5"></app-edit-rfi>
+  <app-edit-progress [report]="report"
+                *ngIf="report.Type == 7"></app-edit-progress>
 </div>
