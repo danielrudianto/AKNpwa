@@ -44,7 +44,7 @@ export class MaterialComponent implements OnInit {
       Note: this.note.value.toString()
     }).subscribe(responseData => {
       this.isSubmitting = false;
-      this.backToProject();
+      this.route.navigate(["/Report/Success"]);
     }, error => {
         this.snackBar.open(error.message, "Close", {
           duration: 2000,

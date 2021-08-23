@@ -54,19 +54,19 @@
   position: relative;
 }
 
-  .step-indicator div[class^="step"] {
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    background-color: #ccc;
-    display: inline-block;
-    position: relative;
-    z-index: 2;
-  }
+.step-indicator div[class^="step"] {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  background-color: #ccc;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+}
 
 .bridge-1 {
   content: "";
-  width: calc(60% - 3rem);
+  width: calc(50% - 3rem);
   background-color: #ED811E;
   height: 0.25rem;
   display: inline-block;
@@ -79,7 +79,7 @@
 
 .bridge-2 {
   content: "";
-  width: calc(60% - 3rem);
+  width: calc(50% - 3rem);
   background-color: #ED811E;
   height: 0.25rem;
   display: inline-block;

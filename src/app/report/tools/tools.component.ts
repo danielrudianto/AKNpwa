@@ -56,7 +56,7 @@ export class ToolsComponent implements OnInit {
     this.reportService.submitToolReport(toolReportForm)
       .subscribe(responseData => {
         this.tools = [];
-        this.route.navigate(["/Project/Feed/"]);
+        this.route.navigate(["/Report/Success"]);
       }, error => {
         this.isSubmitting = false;
         this.snackBar.open("Close", error.message, {

@@ -58,9 +58,13 @@ export class RfiComponent implements OnInit {
     uploadData.append("CreatedBy", this.authService.getEmail());
 
     this.reportService.submitRFI(uploadData).subscribe(response => {
-      this.route.navigate(["/Project/Feed"]);
+      this.route.navigate(["/Report/Success"]);
     }, error => {
-      this.snackBar.open(error.message, "Close");
+        this.snackBar.open(error.message, "Close", {
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          duration: 2000
+        });
       this.isSubmitting = false;
     });
   }

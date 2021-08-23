@@ -116,10 +116,9 @@ export class EditRfiComponent implements OnInit {
     uploadData.append("AddressedFor", this.rfiForm.controls.AddressedFor.value);
     uploadData.append("Description", this.rfiForm.controls.Description.value);
 
-    uploadData.append("ProjectId", this.report.Id);
+    uploadData.append("ProjectId", this.report.CodeProjectId);
     uploadData.append("Files", this.newDocumentations.length.toString());
     uploadData.append("DeleteFiles", this.deletedDocumentations.length.toString());
-    uploadData.append("CreatedBy", this.authService.getEmail());
 
     this.reportService.editRFI(uploadData).subscribe(response => {
       this.route.navigate(["/Project/Feed"]);

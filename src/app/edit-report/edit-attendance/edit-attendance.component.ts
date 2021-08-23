@@ -54,8 +54,8 @@ export class EditAttendanceComponent implements OnInit {
     const workerReportForm: WorkerReportForm = {
       Id: this.report.Id,
       CreatedBy: this.report.CreatedBy,
-      CodeProjectId: this.report.ProjectId,
-      Workers: this.report.Workers
+      CodeProjectId: this.report.CodeProjectId,
+      Workers: this.workers
     }
     this.reportService.editWorkerReport(workerReportForm)
       .subscribe(responseData => {

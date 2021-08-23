@@ -76,6 +76,7 @@ export class EditProgressComponent implements OnInit {
     this.progress = this.report.StatusReport.Status;
     this.report.StatusReport.StatusReportImage.forEach((x: any) => {
       this.documentations.push({
+        Id: x.Id,
         name: x.Name,
         ImageUrl: x.ImageUrl
       })
@@ -84,16 +85,23 @@ export class EditProgressComponent implements OnInit {
 
   submitForm() {
     const uploadData = new FormData();
-    this.documentations.forEach((documentation, index) => {
-      uploadData.append("file[" + index + "]", documentation, documentation.name);
+    this.newDocumentations.forEach((documentation, index) => {
+      uploadData.append("File[" + index + "]", documentation, documentation.name);
     })
 
+    const deleteId: any[] = [];
+    this.deletedDocumentations.forEach((x, indexD) => {
+      deleteId.push(x.Id);
+    })
+    uploadData.append("Delete", JSON.stringify(deleteId));
+
     uploadData.append("Progress", this.progress);
-    uploadData.append("Files", this.documentations.length.toString());
-    uploadData.append("CreatedBy", this.authService.getEmail());
+    uploadData.append("Files", this.newDocumentations.length.toString());
+    uploadData.append("DeleteFiles", this.deletedDocumentations.length.toString());
+    uploadData.append("ProjectId", this.report.CodeProjectId);
     uploadData.append("Id", this.report.Id);
 
-    this.reportService.submitProgressReport(uploadData).subscribe(response => {
+    this.reportService.editProgressReport(uploadData).subscribe(response => {
       this.route.navigate(["/Project/Feed"]);
     }, error => {
       this.snack.open("Open", error.message);

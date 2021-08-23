@@ -88,7 +88,7 @@ export class FeedComponent implements OnInit {
       }
     })
 
-    this.socketService.socket.on("newRFI", (data: any) => {
+    this.socketService.socket.on("newAttendanceReport", (data: any) => {
       if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
         this.feedService.getFeed(data.reportId).subscribe(response => {
           this.feeds.unshift(response);
@@ -96,9 +96,11 @@ export class FeedComponent implements OnInit {
       }
     })
 
-    this.socketService.socket.on("deleteProject", (data: any) => {
+    this.socketService.socket.on("newRFI", (data: any) => {
       if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
-        this.route.navigate(["/"]);
+        this.feedService.getFeed(data.reportId).subscribe(response => {
+          this.feeds.unshift(response);
+        })
       }
     })
 
@@ -142,6 +144,48 @@ export class FeedComponent implements OnInit {
             (this.feeds[index].CodeReportApprovalComment as any[]) = data;
           })
         }
+      }
+    })
+
+    this.socketService.socket.on("editToolReport", (data: any) => {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
+        this.feedService.getFeed(data.reportId).subscribe(response => {
+          this.feeds[this.feeds.findIndex(x => x.Id == data.reportId)] = response;
+        })
+      }
+    })
+
+    this.socketService.socket.on("editAttendanceReport", (data: any) => {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
+        this.feedService.getFeed(data.reportId).subscribe(response => {
+          this.feeds[this.feeds.findIndex(x => x.Id == data.reportId)] = response;
+        })
+      }
+    })
+
+    this.socketService.socket.on("editMaterialReport", (data: any) => {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
+        this.feedService.getFeed(data.reportId).subscribe(response => {
+          this.feeds[this.feeds.findIndex(x => x.Id == data.reportId)] = response;
+        })
+      }
+    })
+
+    this.socketService.socket.on("editProgressReport", (data: any) => {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
+        this.feedService.getFeed(data.reportId).subscribe(response => {
+          this.feeds[this.feeds.findIndex(x => x.Id == data.reportId)] = response;
+        })
+      }
+    })
+
+    this.socketService.socket.on("editRFI", (data: any) => {
+      console.log("Edit ya");
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
+        console.log("Edit juga");
+        this.feedService.getFeed(data.reportId).subscribe(response => {
+          this.feeds[this.feeds.findIndex(x => x.Id == data.reportId)] = response;
+        })
       }
     })
   }

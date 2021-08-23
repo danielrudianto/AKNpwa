@@ -81,4 +81,8 @@ export class ReportService {
       responseType: 'json'
     })
   }
+
+  editProgressReport(formData: FormData) {
+    return this.http.put(global.url + "/reportStatus", formData);
+  }
 }

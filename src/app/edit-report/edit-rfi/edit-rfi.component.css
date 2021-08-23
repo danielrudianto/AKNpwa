@@ -16,3 +16,8 @@
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
 }
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

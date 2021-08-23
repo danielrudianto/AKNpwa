@@ -62,9 +62,13 @@ export class ProgressComponent implements OnInit {
     uploadData.append("CreatedBy", this.authService.getEmail());
 
     this.reportService.submitProgressReport(uploadData).subscribe(response => {
-      this.route.navigate(["/Project/Feed"]);
+      this.route.navigate(["/Report/Success"]);
     }, error => {
-        this.snack.open("Open", error.message);
+        this.snack.open(error.message, "Close", {
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          duration: 2000
+        });
     });
   }
 

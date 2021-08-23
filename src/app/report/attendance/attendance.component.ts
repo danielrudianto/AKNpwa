@@ -62,7 +62,7 @@ export class AttendanceComponent implements OnInit {
     this.reportService.submitWorkerReport(workerReportForm)
       .subscribe(responseData => {
         this.workers = [];
-        this.route.navigate(["/Project/Feed"]);
+        this.route.navigate(["/Report/Success"]);
       }, error => {
           this.isSubmitting = false;
           this.snackBar.open(error.message, "Close", {

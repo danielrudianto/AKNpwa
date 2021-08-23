@@ -52,7 +52,7 @@ export class WeatherComponent implements OnInit {
       CreatedBy: this.authService.getEmail()
     }).subscribe(responseData => {
       this.isSubmitting = false;
-      this.route.navigate(["/Project/Feed"]);
+      this.route.navigate(["/Report/Success"]);
     }, error => {
       this.isSubmitting = false;
       this.snackBar.open("Close", error.message, {
