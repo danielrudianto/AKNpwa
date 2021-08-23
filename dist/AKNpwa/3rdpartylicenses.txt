@@ -32,7 +32,22 @@ THE SOFTWARE.
 @firebase/app
 Apache-2.0
 
+@firebase/app-check
+Apache-2.0
+
 @firebase/component
+Apache-2.0
+
+@firebase/database
+Apache-2.0
+
+@firebase/installations
+Apache-2.0
+
+@firebase/logger
+Apache-2.0
+
+@firebase/messaging
 Apache-2.0
 
 @firebase/util
