@@ -133,7 +133,7 @@ firebase.default.initializeApp(environment.firebase);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('custom-ngsw-worker.js', {
+    ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
     }),
