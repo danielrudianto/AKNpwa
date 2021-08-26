@@ -70,9 +70,10 @@ import { MessagingService } from './services/messaging.service';
 import { AngularFireMessaging, AngularFireMessagingModule, SERVICE_WORKER } from '@angular/fire/messaging';
 import { AngularFireModule } from '@angular/fire';
 import { DotPipe } from './pipes/dot.pipe';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
+import 'firebase/messaging';
 
-firebase.default.initializeApp(environment.firebase);
+firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [

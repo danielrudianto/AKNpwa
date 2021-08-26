@@ -1,16 +1,17 @@
 {
   "ExpandedNodes": [
     "",
+    "\\dist",
+    "\\dist\\AKNpwa",
     "\\src",
     "\\src\\app",
     "\\src\\app\\edit-report",
-    "\\src\\app\\edit-report\\edit-rfi",
+    "\\src\\app\\edit-report\\edit-attendance",
     "\\src\\app\\login",
     "\\src\\app\\main",
-    "\\src\\app\\report",
-    "\\src\\app\\report\\progress",
+    "\\src\\app\\project",
     "\\src\\app\\services"
   ],
-  "SelectedNode": "\\tsconfig.spec.json",
+  "SelectedNode": "\\src\\firebase-messaging-sw.js",
   "PreviewInSolutionExplorer": false
 }

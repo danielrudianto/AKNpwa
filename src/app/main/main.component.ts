@@ -19,7 +19,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.messagingService.requestPermission()
+    
   }
 
   goToProfile() {

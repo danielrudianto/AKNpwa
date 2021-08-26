@@ -104,7 +104,10 @@ export class EditProgressComponent implements OnInit {
     this.reportService.editProgressReport(uploadData).subscribe(response => {
       this.route.navigate(["/Project/Feed"]);
     }, error => {
-      this.snack.open("Open", error.message);
+        this.snack.open(error.message, "Close", {
+          duration: 2000,
+          panelClass: 'snack-bar',
+        });
     });
   }
 

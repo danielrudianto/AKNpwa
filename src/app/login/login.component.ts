@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     this.isSubmitting = true;
     this.authService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value).subscribe(responseData => {
       this.authService.setSession(responseData);
+      this.messagingService.requestPermission()
       this.router.navigate(["/"])
     }, error => {
         this.isSubmitting = false;
