@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1629996406609,
+  "timestamp": 1629997340273,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -14,7 +14,7 @@
         "/favicon.ico",
         "/firebase-messaging-sw.js",
         "/index.html",
-        "/main.697dff9fef487e2c671d.js",
+        "/main.a36cb3f788c6f66421f2.js",
         "/manifest.webmanifest",
         "/polyfills.6da26518e4bc5a0c8376.js",
         "/runtime.2bd73fbc7830d48f899b.js",
@@ -89,10 +89,10 @@
     "/assets/images/logoAlphaLight.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
     "/firebase-messaging-sw.js": "9fedf9e162ddff5d2b072d3249dcc563cb427eb1",
-    "/index.html": "1d2e458d2643585cc539f54783161fa6b900e4d3",
+    "/index.html": "5c9e74501ae0cd95785e13b807e7a61bcf16c319",
     "/logoAlphaDark.dce84093991dccf3263c.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
     "/logoAlphaLight.dce84093991dccf3263c.png": "b4d34eb3dfa0380744b7d6c133f614d13378dc04",
-    "/main.697dff9fef487e2c671d.js": "a17ef8fdb4f4065e8fd5ae35dc497ea2dd6e8b22",
+    "/main.a36cb3f788c6f66421f2.js": "f3fdb942793a6ac74d42d0251cc4790a66c130b3",
     "/manifest.webmanifest": "6ef34095b29d9bdb848aed1961ad1f013b8d6fec",
     "/polyfills.6da26518e4bc5a0c8376.js": "6e35743d7c56b6b7e0603edd4697960b4d5481d2",
     "/runtime.2bd73fbc7830d48f899b.js": "8e8ddea6ff795c114b25dd9ec4d94395d10f9049",
