@@ -38,7 +38,7 @@ body {
 }
 
 .snack-bar{
-    background-color:white;
+    background-color:white!important;
 }
 
 .mat-snack-bar-container{
@@ -76,3 +76,7 @@ body {
     background: #555;
     width: 0.25rem;
   }
+
+.white-snackbar{
+    background-color:white;
+}

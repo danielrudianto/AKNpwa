@@ -5,13 +5,12 @@
     "\\dist\\AKNpwa",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\edit-report",
-    "\\src\\app\\edit-report\\edit-attendance",
-    "\\src\\app\\login",
-    "\\src\\app\\main",
+    "\\src\\app\\main\\main-feeds",
+    "\\src\\app\\main\\main-projects",
     "\\src\\app\\project",
+    "\\src\\app\\project\\feed",
     "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\firebase-messaging-sw.js",
+  "SelectedNode": "\\src\\app\\services\\feed.service.ts",
   "PreviewInSolutionExplorer": false
 }

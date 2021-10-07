@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { FileSaverService } from 'ngx-filesaver';
@@ -12,13 +13,14 @@ import { ReportService } from '../../services/report.service';
 })
 export class DailyComponent implements OnInit {
   isSubmitting: boolean = false;
-  date: FormControl = new FormControl(null, Validators.required)
+  date: FormControl = new FormControl(null, Validators.required);
 
   constructor(
     private reportService: ReportService,
     private _FileSaverService: FileSaverService,
     private router: ActivatedRoute,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +34,10 @@ export class DailyComponent implements OnInit {
         this._FileSaverService.save((<any>data), "Daily Report.pdf");
       }, error => {
           this.isSubmitting = false;
+          this.snackBar.open("Daily report has not been created.", "Close", {
+            duration: 2000,
+            panelClass: ['white-snackbar']
+          })
       })
     }
     

@@ -92,6 +92,15 @@ export class MainFeedsComponent implements OnInit {
       }
     })
 
+    this.socketService.socket.on("newDailyReport", (data: any) => {
+      if (this.projectsSubscribed.includes(data.projectId)) {
+        this.feedService.getFeed(data.reportId).subscribe(response => {
+          response.ProjectName = this.projects.filter(y => y.Id == response.CodeProjectId)[0].Name;
+          this.feeds.unshift(response);
+        })
+      }
+    })
+
     this.socketService.socket.on("newAttendanceReport", (data: any) => {
       if (this.projectsSubscribed.includes(data.projectId)) {
         this.feedService.getFeed(data.reportId).subscribe(response => {

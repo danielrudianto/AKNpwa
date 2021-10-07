@@ -13,7 +13,7 @@ export class FeedService {
     private authService: AuthService
   ) { }
 
-  getFeeds(projectId: number, offset: number, limit: number = 10) {
+  getFeeds(projectId: number, offset: number, limit: number = 3) {
     return this.http.get<any[]>(global.url + "/reportFeed/" + projectId.toString(), {
       params: {
         offset: offset,
@@ -31,6 +31,12 @@ export class FeedService {
       params: {
         Email: this.authService.getEmail()
       }
+    })
+  }
+
+  downloadDailyReport(date: Date, projectId: string) {
+    return this.http.get(`${global.url}/reportDaily/${projectId}/${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`, {
+      responseType:"blob"
     })
   }
 }

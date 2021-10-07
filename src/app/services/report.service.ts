@@ -46,11 +46,7 @@ export class ReportService {
   downloadDailyReport(date: Date, projectId: number) {
     let headers = new HttpHeaders();
     headers = headers.set('Accept', 'application/pdf');
-    return this.http.get(global.url + '/reportDaily', {
-      params: {
-        date: date.toISOString(),
-        projectId: projectId
-      },
+    return this.http.get(global.url + '/reportDaily/' + projectId + "/" + date.getDate() + "/" + (date.getMonth()) + "/" + date.getFullYear(), {
       responseType: 'blob',
       headers: headers
     })
@@ -84,5 +80,9 @@ export class ReportService {
 
   editProgressReport(formData: FormData) {
     return this.http.put(global.url + "/reportStatus", formData);
+  }
+
+  checkDailyReport(projectId: string, date: Date) {
+    return this.http.get(`${global.url}/reportDaily/check/${projectId}/${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`);
   }
 }

@@ -39,11 +39,13 @@ export class MainProjectsComponent implements OnInit {
 
   goToProject(project: CodeProject) {
     this.cookieService.set("projectId", project.Id!.toString());
+    this.cookieService.set("projectName", project.Name);
     this.router.navigate(['/Project/Feed']);
   }
 
   goToProjectDetail(project: CodeProject) {
     this.cookieService.set("projectId", project.Id!.toString());
+    this.cookieService.set("projectName", project.Name);
     this.router.navigate(['/Project/Detail']);
   }
 

@@ -30,6 +30,7 @@
             <span>Delete feed</span>
           </button>
           <button
+                  *ngIf="feed.Type != 6"
                   [disabled]=""
                   (click)="editFeed(feed)"
                   mat-menu-item>
@@ -44,9 +45,10 @@
           <span class="mb-0" *ngSwitchCase="3">Material Report</span>
           <span class="mb-0" *ngSwitchCase="4">Weather Report</span>
           <span class="mb-0" *ngSwitchCase="5">Request For Information</span>
+          <span class="mb-0" *ngSwitchCase="6">Daily Report</span>
           <span class="mb-0" *ngSwitchCase="7">Progress Report</span>
 
-          <span class="feed-date d-block">{{ feed.CreatedDate | date:'dd MMM YYYY HH:mm' }}</span>
+          <span class="feed-date d-block">{{ feed.Date | date:'dd MMM YYYY HH:mm' }}</span>
         </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content [ngSwitch]="feed.Type">
@@ -164,6 +166,11 @@
           <app-rfi-answer
                           [reportId]="feed.Id"
                           [answers]="feed.RequestForInformation.RequestForInformationAnswer"></app-rfi-answer>
+        </div>
+        <div *ngSwitchCase="6">
+          <button mat-raised-button (click)="downloadReport(feed.Date)">
+          <mat-icon>download</mat-icon>Download Report
+          </button>
         </div>
         <div *ngSwitchCase="7">
           <p class="fr-text">

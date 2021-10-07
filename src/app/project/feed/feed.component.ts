@@ -13,6 +13,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ReportService } from '../../services/report.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../services/auth.service';
+import { FileSaverService } from 'ngx-filesaver';
 
 @Component({
   selector: 'app-feed',
@@ -33,7 +34,8 @@ export class FeedComponent implements OnInit {
     private approvalService: ApprovalService,
     private componentFactoryResolver: ComponentFactoryResolver,
     private dialog: MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private fileSaver: FileSaverService
   ) { }
 
   @ViewChild(ImageViewWrapperDirective, { static: false }) imageViewHost: ImageViewWrapperDirective;
@@ -97,6 +99,14 @@ export class FeedComponent implements OnInit {
     })
 
     this.socketService.socket.on("newRFI", (data: any) => {
+      if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
+        this.feedService.getFeed(data.reportId).subscribe(response => {
+          this.feeds.unshift(response);
+        })
+      }
+    })
+
+    this.socketService.socket.on("newDailyReport", (data: any) => {
       if (data.projectId == parseInt(this.cookieService.get("projectId").toString())) {
         this.feedService.getFeed(data.reportId).subscribe(response => {
           this.feeds.unshift(response);
@@ -187,6 +197,13 @@ export class FeedComponent implements OnInit {
           this.feeds[this.feeds.findIndex(x => x.Id == data.reportId)] = response;
         })
       }
+    })
+  }
+
+  downloadReport(date: string) {
+    const formattedDate = new Date(date);
+    this.feedService.downloadDailyReport(new Date(date), this.cookieService.get("projectId")).subscribe(data => {
+      this.fileSaver.save((<any>data), `${formattedDate.getFullYear()}-${formattedDate.getMonth() + 1}-${formattedDate.getDate()}-${this.cookieService.get("projectName")}.pdf`);
     })
   }
 
