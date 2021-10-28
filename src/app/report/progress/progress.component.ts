@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../../services/auth.service';
 import { ReportService } from '../../services/report.service';
 import { MediaPickerComponent } from '../../shared/mediaPicker/media-picker';
+import imageCompression from 'browser-image-compression';
 
 @Component({
   selector: 'app-progress',
@@ -52,24 +53,54 @@ export class ProgressComponent implements OnInit {
 
   submitForm() {
     const uploadData = new FormData();
-    this.documentations.forEach((documentation, index) => {
-      uploadData.append("file[" + index + "]", documentation, documentation.name);
-    })
+    let processedItems = 0;
+    this.isSubmitting = true;
 
-    uploadData.append("Progress", this.progress);
-    uploadData.append("ProjectId", this.cookieService.get("projectId"));
-    uploadData.append("Files", this.documentations.length.toString());
-    uploadData.append("CreatedBy", this.authService.getEmail());
+    if (this.documentations.length > 0) {
+      this.documentations.forEach((documentation, index) => {
+        imageCompression(documentation, {
+          maxWidthOrHeight: 640
+        }).then(compressed => {
+          uploadData.append("file[" + index + "]", compressed, documentation.name);
+          processedItems++;
 
-    this.reportService.submitProgressReport(uploadData).subscribe(response => {
-      this.route.navigate(["/Report/Success"]);
-    }, error => {
+          if (processedItems == this.documentations.length) {
+            uploadData.append("Progress", this.progress);
+            uploadData.append("ProjectId", this.cookieService.get("projectId"));
+            uploadData.append("Files", this.documentations.length.toString());
+            uploadData.append("CreatedBy", this.authService.getEmail());
+
+            this.reportService.submitProgressReport(uploadData).subscribe(response => {
+              this.route.navigate(["/Report/Success"]);
+            }, error => {
+              this.snack.open(error.message, "Close", {
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+                duration: 2000
+              });
+              this.isSubmitting = false;
+            });
+          }
+        })
+
+      })
+    } else {
+      uploadData.append("Progress", this.progress);
+      uploadData.append("ProjectId", this.cookieService.get("projectId"));
+      uploadData.append("Files", this.documentations.length.toString());
+      uploadData.append("CreatedBy", this.authService.getEmail());
+
+      this.reportService.submitProgressReport(uploadData).subscribe(response => {
+        this.route.navigate(["/Report/Success"]);
+      }, error => {
         this.snack.open(error.message, "Close", {
           horizontalPosition: 'center',
           verticalPosition: 'bottom',
           duration: 2000
         });
-    });
+        this.isSubmitting = false;
+      });
+    }
   }
 
 }
